@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.FinReservationController">
+   <children>
+      <Label layoutX="228.0" layoutY="191.0" text="La réservation est terminée" />
+      <Button layoutX="247.0" layoutY="225.0" mnemonicParsing="false" text="Retour à l'acceuil" />
+   </children>
+</AnchorPane>
