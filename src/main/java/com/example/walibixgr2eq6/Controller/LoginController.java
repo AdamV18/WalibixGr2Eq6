@@ -61,15 +61,4 @@ public class LoginController {
             passwordVisibleField.setManaged(true);
         }
     }
-
-    @FXML
-    protected void onSignupRedirect() {
-        try {
-            Stage stage = (Stage) emailField.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/walibixgr2eq6/signup-view.fxml"));
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.walibixgr2eq6.Controller.LoginController">
+            fx:controller="com.example.walibixgr2eq6.Controller.LoginController"
+            style="-fx-background-color: #f9f9f9;">
 
+    <!-- TOP: -->
     <top>
-        <Label text="Connexion"
-               style="-fx-font-size: 24px; -fx-padding: 20px;"
-               BorderPane.alignment="CENTER" />
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="10" left="10" right="10" bottom="10" />
+            </padding>
+            <ImageView fitHeight="90" fitWidth="90">
+                <image>
+                    <Image url="@images/logo.png" />
+                </image>
+            </ImageView>
+        </HBox>
     </top>
 
+    <!-- CENTER: -->
     <center>
-        <VBox alignment="CENTER" spacing="10">
-            <TextField fx:id="emailField" promptText="Email" />
+        <VBox spacing="12" alignment="CENTER">
+            <Label text="Veuillez vous connecter" style="-fx-font-size: 18px;" />
+            <TextField fx:id="emailField" promptText="Email" maxWidth="250" />
 
-            <StackPane>
+            <StackPane maxWidth="250">
                 <PasswordField fx:id="passwordField" promptText="Mot de passe" />
-                <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
-                           visible="false" managed="false" />
+                <TextField fx:id="passwordVisibleField" promptText="Mot de passe" visible="false" managed="false" />
             </StackPane>
 
             <CheckBox text="Afficher le mot de passe" onAction="#togglePasswordVisibility" />
 
-            <Button text="Se connecter" onAction="#onLoginButtonClick" />
-            <Button text="S'inscrire" onAction="#onSignupRedirect" />
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Se connecter" onAction="#onLoginButtonClick" />
+            </HBox>
+
             <Label fx:id="errorLabel" textFill="red" />
         </VBox>
     </center>

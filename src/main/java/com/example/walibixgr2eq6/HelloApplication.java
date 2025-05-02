@@ -17,9 +17,9 @@ import com.example.walibixgr2eq6.Model.*;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 300);
-        stage.setTitle("Connexion");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        stage.setTitle("Bienvenue sur WALIBIX");
         stage.setScene(scene);
         stage.show();
     }
