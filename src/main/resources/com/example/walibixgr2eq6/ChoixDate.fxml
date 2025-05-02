@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.ChoixDateController">
    <children>
-      <DatePicker layoutX="212.0" layoutY="187.0" />
-      <Button layoutX="274.0" layoutY="243.0" mnemonicParsing="false" text="Valider" />
-      <Label graphicTextGap="6.0" layoutX="252.0" layoutY="134.0" text="Choississez le jour" />
+      <DatePicker layoutX="212.0" layoutY="208.0" />
+      <Button layoutX="273.0" layoutY="261.0" mnemonicParsing="false" text="Valider" />
+      <Label graphicTextGap="6.0" layoutX="220.0" layoutY="124.0" text="Choississez le jour">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
