@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.LoginController">
+
+    <top>
+        <Label text="Connexion"
+               style="-fx-font-size: 24px; -fx-padding: 20px;"
+               BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <TextField fx:id="emailField" promptText="Email" />
+
+            <StackPane>
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" />
+                <TextField fx:id="passwordVisibleField" promptText="Mot de passe"
+                           visible="false" managed="false" />
+            </StackPane>
+
+            <CheckBox text="Afficher le mot de passe" onAction="#togglePasswordVisibility" />
+
+            <Button text="Se connecter" onAction="#onLoginButtonClick" />
+            <Button text="S'inscrire" onAction="#onSignupRedirect" />
+            <Label fx:id="errorLabel" textFill="red" />
+        </VBox>
+    </center>
+</BorderPane>

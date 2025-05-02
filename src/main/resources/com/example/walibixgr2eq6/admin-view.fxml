@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.AdminController">
+
+    <top>
+        <Label text="Tableau de bord administrateur"
+               style="-fx-font-size: 24px; -fx-padding: 20px;"
+               BorderPane.alignment="CENTER" />
+    </top>
+
+    <center>
+        <VBox spacing="15" alignment="CENTER">
+            <Button text="Gérer les attractions" onAction="#onManageAttractions" />
+            <Button text="Gérer les réductions" onAction="#onManageReductions" />
+            <Button text="Voir les clients" onAction="#onViewClients" />
+            <Button text="Voir les statistiques" onAction="#onViewStatistics" />
+        </VBox>
+    </center>
+</BorderPane>
