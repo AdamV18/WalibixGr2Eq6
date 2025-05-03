@@ -12,6 +12,11 @@ public class Reservation {
     private double prixTotal;
     private double prixAvecReduc;
 
+    /**
+    * permet de faire passer les informations d'une page à l'autre pour la réservation d'une attraction
+     */
+    public Reservation() {}
+
     public Reservation(int reservationId, LocalDate date, LocalTime heure, int userId, int attractionId, double prixTotal, double prixAvecReduc) {
         this.reservationId = reservationId;
         this.date = date;

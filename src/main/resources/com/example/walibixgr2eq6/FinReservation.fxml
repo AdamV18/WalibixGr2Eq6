@@ -5,13 +5,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.FinReservationController">
-   <children>
-      <Label layoutX="180.0" layoutY="194.0" text="La réservation est terminée">
-         <font>
-            <Font size="20.0" />
-         </font></Label>
-      <Button layoutX="246.0" layoutY="242.0" mnemonicParsing="false" text="Retour à l'acceuil" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <ImageView fx:id="logo" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+            <image>
+                <Image url="@../../../images/logo_walibix.png" />
+            </image>
+        </ImageView>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="30">
+            <children>
+                <Label fx:id="texteFinReservation" alignment="CENTER" text="Réservation finie !">
+                    <font>
+                        <Font size="40.0" />
+                    </font>
+                </Label>
+                <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retourner à l'accueil" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
