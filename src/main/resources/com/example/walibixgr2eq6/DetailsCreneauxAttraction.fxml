@@ -15,23 +15,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-   <!-- Header avec logo à gauche et titre centré -->
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="600.0" spacing="10.0">
-         <!-- Logo dans le coin gauche -->
          <ImageView fitHeight="101.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../images/logo_walibix.png" />
             </image>
          </ImageView>
 
-         <!-- Espace flexible avant le titre -->
          <Region HBox.hgrow="ALWAYS" />
 
-         <!-- Titre centré -->
          <Label text="Pulsar" style="-fx-font-size: 40px;" />
 
-         <!-- Espace flexible après le titre -->
          <Region HBox.hgrow="ALWAYS" />
       </HBox>
    </top>
@@ -39,16 +34,12 @@
    <center>
       <HBox alignment="CENTER">
          <VBox alignment="CENTER" spacing="20.0" translateX="-100.0" translateY="-20.0">
-            <!-- Type -->
             <Label style="-fx-font-size: 24px;" text="Water Coaster" />
-
-            <!-- Description -->
             <Text style="-fx-font-size: 24px;" text="Un splash gigantesque propulsé en avant et en arrière sur l’eau." textAlignment="CENTER" wrappingWidth="400.0" />
-
-            <!-- Prix -->
             <Label style="-fx-font-size: 22px;" text="Prix : 32 €" />
+            <Label style="-fx-font-size: 22px;" text="Prix après réduction : 25.6 €" />
 
-            <!-- Choix du créneau -->
+
             <Label style="-fx-font-size: 20px;" text="Choisissez votre créneau :" />
             <ComboBox prefWidth="150.0">
                <items>
@@ -75,7 +66,6 @@
                </items>
             </ComboBox>
 
-            <!-- Boutons -->
             <HBox alignment="CENTER" spacing="10.0">
                <Button text="Valider" />
             </HBox>
@@ -83,7 +73,7 @@
       </HBox>
    </center>
 
-   <!-- Image sur la gauche -->
+
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -91,7 +81,7 @@
             <HBox prefHeight="7.0" prefWidth="200.0" />
             <VBox prefHeight="200.0" prefWidth="100.0" translateX="10.0" translateY="30.0">
                <children>
-                  <!-- Image du Pulsar -->
+
                   <ImageView fitHeight="400.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/pulsar.jpg" />
@@ -103,7 +93,7 @@
       </VBox>
    </left>
 
-   <!-- Bas de page -->
+
    <bottom>
       <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
