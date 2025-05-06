@@ -8,7 +8,9 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.walibixgr2eq6.Controller.StartController"
-            style="-fx-background-color: #f9f9f9;">
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
 
     <!-- TOP: -->
     <top>
@@ -23,13 +25,12 @@
                     </image>
                 </ImageView>
             </HBox>
-
             <Label text="Bienvenue sur l'application WALIBIX"
                    style="-fx-font-size: 24px; -fx-font-weight: bold;" />
         </StackPane>
     </top>
 
-    <!-- CENTRE: -->
+    <!-- CENTER: -->
     <center>
         <VBox spacing="20" alignment="CENTER">
             <Label text="Choisissez une option pour commencer :" style="-fx-font-size: 14px;" />
@@ -38,5 +39,4 @@
             <Button text="Continuer en tant qu'invité" onAction="#onGuestClick" minWidth="200" />
         </VBox>
     </center>
-
 </BorderPane>

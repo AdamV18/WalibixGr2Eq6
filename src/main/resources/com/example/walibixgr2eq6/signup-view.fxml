@@ -8,7 +8,9 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.walibixgr2eq6.Controller.SignupController"
-            style="-fx-background-color: #f9f9f9;">
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
 
     <!-- TOP: -->
     <top>
@@ -34,6 +36,7 @@
         <VBox alignment="CENTER" spacing="12">
             <TextField fx:id="nomField" promptText="Nom" maxWidth="250" />
             <TextField fx:id="prenomField" promptText="Prénom" maxWidth="250" />
+            <TextField fx:id="dateNaissance" promptText="Date de naissance" maxWidth="250"/>
             <TextField fx:id="emailField" promptText="Email" maxWidth="250" />
             <StackPane maxWidth="250">
                 <PasswordField fx:id="passwordField" promptText="Mot de passe" />

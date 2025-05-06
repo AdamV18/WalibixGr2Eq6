@@ -4,7 +4,12 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600" prefWidth="900" style="-fx-background-color: #f9f9f9;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.HistoriqueController">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.HistoriqueController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
 
     <!-- TOP: -->
     <top>
@@ -17,7 +22,8 @@
                 </ImageView>
             </HBox>
             <HBox alignment="CENTER">
-                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10;" text="Historique de vos réservations" />
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 10;"
+                text="Historique de vos réservations" />
             </HBox>
         </VBox>
     </top>
@@ -38,9 +44,11 @@
         </VBox>
     </center>
 
+    <!-- BOTTOM: -->
     <bottom>
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10;">
-            <Button fx:id="retourButton" onAction="#onRetourClick" prefHeight="36.0" prefWidth="130.0" style="-fx-font-size: 14px; -fx-padding: 8 20;" text="Retour" />
+            <Button fx:id="retourButton" onAction="#onRetourClick" prefHeight="36.0" prefWidth="130.0"
+            style="-fx-font-size: 14px; -fx-padding: 8 20;" text="Retour" />
         </VBox>
     </bottom>
 </BorderPane>
