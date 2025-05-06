@@ -12,26 +12,34 @@
 
     <!-- TOP: -->
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <padding>
-                <Insets top="15" left="15" right="15" bottom="15" />
-            </padding>
-            <ImageView fitHeight="90" fitWidth="90">
-                <image>
-                    <Image url="@images/logo.png" preserveRatio="true" />
-                </image>
-            </ImageView>
-        </HBox>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="0" left="10" right="0" bottom="0"/>
+                </padding>
+                <ImageView fitHeight="150" fitWidth="150">
+                    <image>
+                        <Image url="@images/logo.png" preserveRatio="true"/>
+                    </image>
+                </ImageView>
+            </HBox>
+
+            <Label text="Créer un compte"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
     </top>
 
     <!-- CENTER: -->
     <center>
         <VBox alignment="CENTER" spacing="12">
-            <Label text="Créer un compte" style="-fx-font-size: 18px;" />
             <TextField fx:id="nomField" promptText="Nom" maxWidth="250" />
             <TextField fx:id="prenomField" promptText="Prénom" maxWidth="250" />
             <TextField fx:id="emailField" promptText="Email" maxWidth="250" />
-            <PasswordField fx:id="passwordField" promptText="Mot de passe" maxWidth="250" />
+            <StackPane maxWidth="250">
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" />
+                <TextField fx:id="passwordVisibleField" promptText="Mot de passe" visible="false" managed="false" />
+            </StackPane>
+            <CheckBox text="Afficher le mot de passe" onAction="#togglePasswordVisibility" />
             <Button text="Créer le compte" onAction="#onSignupButtonClick" />
             <Label fx:id="signupMessageLabel" textFill="green" />
         </VBox>

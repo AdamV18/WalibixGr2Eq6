@@ -45,4 +45,19 @@ public class UserDao {
 
         return user;
     }
+
+    public boolean userExists(String email) {
+        String sql = "SELECT 1 FROM user WHERE email = ?";
+        try (Connection conn = daoFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

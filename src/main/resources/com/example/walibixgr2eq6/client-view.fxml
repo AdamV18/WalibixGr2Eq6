@@ -7,30 +7,45 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.walibixgr2eq6.Controller.LoginController"
-            style="-fx-background-color: #f9f9f9;">
+            fx:controller="com.example.walibixgr2eq6.Controller.ClientController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
 
-    <!-- TOP: -->
+    <!-- TOP -->
     <top>
-        <HBox alignment="TOP_LEFT" spacing="10">
-            <padding>
-                <Insets top="15" left="15" right="15" bottom="15" />
-            </padding>
-            <ImageView fitHeight="90" fitWidth="90">
-                <image>
-                    <Image url="@images/logo.png" preserveRatio="true" />
-                </image>
-            </ImageView>
-            <Label text="WALIBIX - Espace Client" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-        </HBox>
-    </top>
+            <StackPane>
+                <HBox alignment="TOP_LEFT">
+                    <padding>
+                        <Insets top="0" left="10" right="0" bottom="0"/>
+                    </padding>
+                    <ImageView fitHeight="150" fitWidth="150">
+                        <image>
+                            <Image url="@images/logo.png" preserveRatio="true"/>
+                        </image>
+                    </ImageView>
+                </HBox>
 
-    <!-- CENTER: -->
+                <Label text="Espace client"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            </StackPane>
+        </top>
+
+    <!-- CENTER -->
     <center>
-        <VBox alignment="CENTER" spacing="15">
-            <Label text="Bienvenue dans votre espace client" style="-fx-font-size: 22px;" />
-            <Label text="(Ici vous pourrez réserver des attractions, voir votre historique, etc.)"
-                   style="-fx-font-size: 14px;" wrapText="true" />
+        <VBox spacing="20" alignment="CENTER">
+            <Button text="Nouvelle réservation"
+                    fx:id="nouvelleReservationButton"
+                    onAction="#onNouvelleReservationClick"
+                    minWidth="200" />
+            <Button text="Historique des réservations"
+                    fx:id="historiqueButton"
+                    onAction="#onHistoriqueClick"
+                    minWidth="200" />
+            <Button text="Se déconnecter"
+                    fx:id="logoutButton"
+                    onAction="#onLogoutClick"
+                    minWidth="200"/>
         </VBox>
     </center>
 </BorderPane>

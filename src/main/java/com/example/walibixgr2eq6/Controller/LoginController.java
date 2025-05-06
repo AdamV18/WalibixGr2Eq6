@@ -2,6 +2,7 @@ package com.example.walibixgr2eq6.Controller;
 
 import com.example.walibixgr2eq6.Dao.*;
 import com.example.walibixgr2eq6.Model.User;
+import com.example.walibixgr2eq6.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -36,6 +37,8 @@ public class LoginController {
                 String fxmlFile = user.isAdmin() ? "admin-view.fxml" : "client-view.fxml";
                 Parent root = FXMLLoader.load(getClass().getResource("/com/example/walibixgr2eq6/" + fxmlFile));
                 stage.setScene(new Scene(root));
+                Session.setCurrentUserId(user.getUserId());
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
