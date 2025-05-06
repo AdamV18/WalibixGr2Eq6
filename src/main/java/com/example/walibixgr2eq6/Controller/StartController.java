@@ -26,7 +26,7 @@ public class StartController {
 
     @FXML
     protected void onGuestClick() {
-        switchScene("client-view.fxml");
+        switchScene("invite-view.fxml");
     }
 
     private void switchScene(String fxmlFile) {

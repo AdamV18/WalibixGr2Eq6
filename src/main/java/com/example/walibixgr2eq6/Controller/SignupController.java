@@ -75,7 +75,6 @@ public class SignupController implements Initializable {
                 return;
             }
 
-            // Vérifier si la date est valide
             Date date = parseDateFromTextField(dateTexte);
             if (date == null) {
                 signupMessageLabel.setText("Format de date invalide. Utilisez le format jj/mm/aaaa.");
