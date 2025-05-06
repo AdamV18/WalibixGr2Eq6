@@ -1,12 +1,23 @@
 package com.example.walibixgr2eq6.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AdminController {
 
     @FXML
+    private Button statsButton;
+
+    @FXML
     protected void onManageAttractions() {
+
         showMessage("Redirection vers la gestion des attractions.");
     }
 
@@ -22,7 +33,8 @@ public class AdminController {
 
     @FXML
     protected void onViewStatistics() {
-        showMessage("Redirection vers les statistiques.");
+        //showMessage("Redirection vers les statistiques.");
+        switchScene("Statistics.fxml");
     }
 
     private void showMessage(String msg) {
@@ -31,5 +43,15 @@ public class AdminController {
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
+    }
+
+    private void switchScene(String fxmlFile) {
+        try {
+            Stage stage = (Stage) statsButton.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/walibixgr2eq6/" + fxmlFile));
+            stage.setScene(new Scene(root, 900, 600));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
