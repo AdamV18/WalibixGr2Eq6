@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.walibixgr2eq6.Controller.ListeAttractionController"
             prefHeight="400.0" prefWidth="600.0">
 
    <top>
@@ -37,24 +38,25 @@
                </font>
             </Label>
 
-            <ComboBox fx:id="comboBox" prefWidth="300.0" promptText="Attraction - type"
+            <ComboBox fx:id="comboBox" prefWidth="300.0" promptText="Attraction - Type"
                       visibleRowCount="8">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Pulsar - Water Coaster" />
                      <String fx:value="Vampire - Roller Coaster" />
-                     <String fx:value="Loup Garou - Wooden Coaster" />
+                     <String fx:value="Loup-Garou - Wooden Coaster" />
                      <String fx:value="Dalton Terror - Drop Tower" />
                      <String fx:value="Challenge of Tutankhamon - Dark Ride" />
                      <String fx:value="Psyké Underground - Launch Coaster" />
-                     <String fx:value="Tiki Waka - Family Coaster" />
+                     <String fx:value="Tiki-Waka - Family Coaster" />
                      <String fx:value="Flashback - Water Ride" />
                   </FXCollections>
                </items>
             </ComboBox>
 
-            <Button text="Valider">
-               <font>
+            <Button text="Valider" onAction="#valider">
+
+            <font>
                   <Font size="18.0" />
                </font>
             </Button>
