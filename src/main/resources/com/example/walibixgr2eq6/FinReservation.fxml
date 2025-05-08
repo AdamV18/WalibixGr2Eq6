@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            fx:controller="com.example.walibixgr2eq6.Controller.FinReservationController"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <ImageView fx:id="logo" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
             <image>
@@ -21,7 +23,7 @@
                         <Font size="40.0" />
                     </font>
                 </Label>
-                <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retourner à l'accueil" />
+                <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retourner à l'accueil" onAction="#retourAccueil" />
             </children>
         </VBox>
     </center>
