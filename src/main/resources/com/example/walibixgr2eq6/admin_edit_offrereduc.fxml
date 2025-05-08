@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.walibixgr2eq6.Controller.EditOffreReducController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.EditOffreReducController">
 
-</AnchorPane>
+    <!-- Haut : bouton retour -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <Button fx:id="EditOffreRetourButton" onAction="#RetourMenu" text="Retour à l'accueil admin" />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Centre : SplitPane avec formulaire et table -->
+    <center>
+        <SplitPane dividerPositions="0.5">
+            <items>
+
+                <!-- Formulaire à gauche -->
+                <AnchorPane>
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Ajouter ou modifier une offre de réduction">
+                            <font><Font size="18.0" /></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6" /></textFill>
+                        </Label>
+
+                        <TextField fx:id="nomField" layoutX="14.0" layoutY="60.0" prefWidth="300.0" promptText="Nom de l'offre" />
+                        <TextArea fx:id="descriptionArea" layoutX="14.0" layoutY="100.0" prefHeight="60.0" prefWidth="300.0" promptText="Description" />
+                        <TextField fx:id="pourcentageField" layoutX="14.0" layoutY="170.0" prefWidth="300.0" promptText="Pourcentage (%)" />
+                        <TextField fx:id="ageMinField" layoutX="14.0" layoutY="210.0" prefWidth="300.0" promptText="Âge minimum" />
+                        <TextField fx:id="ageMaxField" layoutX="14.0" layoutY="250.0" prefWidth="300.0" promptText="Âge maximum" />
+
+                        <HBox layoutX="14.0" layoutY="300.0" spacing="10.0">
+                            <children>
+                                <Button onAction="#handleAddOffreReduc" text="Ajouter" />
+                                <Button onAction="#handleUpdateOffreReduc" text="Mettre à jour" />
+                                <Button onAction="#handleDeleteOffreReduc" text="Supprimer" />
+                            </children>
+                        </HBox>
+                          <Button layoutX="33.0" layoutY="343.0" onAction="#handleAssignOffres" text="Assigner les offres aux utilisateurs" />
+                    </children>
+                </AnchorPane>
+
+                <!-- Table à droite -->
+                <AnchorPane>
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Liste des offres de réduction">
+                            <font><Font size="18.0" /></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6" /></textFill>
+                        </Label>
+
+                        <TableView fx:id="offreTable" layoutX="14.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0">
+                            <columns>
+                                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                                <TableColumn fx:id="colNom" prefWidth="150.0" text="Nom" />
+                                <TableColumn fx:id="colPourcentage" prefWidth="100.0" text="\%" />
+                                <TableColumn fx:id="colAgeMin" prefWidth="80.0" text="Âge min" />
+                                <TableColumn fx:id="colAgeMax" prefWidth="80.0" text="Âge max" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
