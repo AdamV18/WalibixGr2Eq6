@@ -72,26 +72,19 @@ INSERT INTO OffreReduction (nom, description, pourcentage, condition_age_min, co
 ('Senior', 'Réduction senior : 15% pour les plus de 65 ans', 15.00, 65, 130);
 
 -- 5. Insertion des utilisateurs
-INSERT INTO User (email, mot_de_passe, admin, nom, prenom, date_naissance, type_client) VALUES
-('admin@gmail.com', 'admin123', TRUE, 'Admin', 'Admin', '1980-01-01', 'Membre'),
-('paul.dupont@gmail.com', 'paul123', FALSE, 'Dupont', 'Paul', '2005-04-15', 'Membre'),
-('emma.leroy@gmail.com', 'emma123', FALSE, 'Leroy', 'Emma', '2000-07-22', 'Membre'),
-('lucas.martin@gmail.com', 'lucas123', FALSE, 'Martin', 'Lucas', '1955-11-30', 'Membre'),
-('sophie.moreau@gmail.com', 'sophie123', FALSE, 'Moreau', 'Sophie', '2010-02-12', 'Invite'),
-('julie.marchand@gmail.com', 'julie123', FALSE, 'Marchand', 'Julie', '2012-08-05', 'Invite'),
-('nicolas.bernard@gmail.com', 'nico123', FALSE, 'Bernard', 'Nicolas', '1999-12-10', 'Membre'),
-('marie.duval@gmail.com', 'marie123', FALSE, 'Duval', 'Marie', '1950-06-18', 'Membre'),
-('thomas.roche@gmail.com', 'thomas123', FALSE, 'Roche', 'Thomas', '1998-09-03', 'Membre');
+INSERT INTO User (email, mot_de_passe, admin, nom, prenom, date_naissance, type_client, offre_reduc_id) VALUES
+('admin@gmail.com', 'admin123', TRUE, 'Admin', 'Admin', '1980-01-01', 'Membre', NULL),
+('paul.dupont@gmail.com', 'paul123', FALSE, 'Dupont', 'Paul', '2005-04-15', 'Membre', 2),
+('emma.leroy@gmail.com', 'emma123', FALSE, 'Leroy', 'Emma', '2000-07-22', 'Membre', 2),
+('lucas.martin@gmail.com', 'lucas123', FALSE, 'Martin', 'Lucas', '1955-11-30', 'Membre',3),
+('sophie.moreau@gmail.com', 'sophie123', FALSE, 'Moreau', 'Sophie', '2010-02-12', 'Invite', NULL),
+('julie.marchand@gmail.com', 'julie123', FALSE, 'Marchand', 'Julie', '2012-08-05', 'Invite', NULL),
+('nicolas.bernard@gmail.com', 'nico123', FALSE, 'Bernard', 'Nicolas', '1999-12-10', 'Membre', 2),
+('marie.duval@gmail.com', 'marie123', FALSE, 'Duval', 'Marie', '1950-06-18', 'Membre', 3),
+('thomas.roche@gmail.com', 'thomas123', FALSE, 'Roche', 'Thomas', '1998-09-03', 'Membre', NULL);
 
--- 6. Mise à jour des utilisateurs avec offres de réduction
-UPDATE User SET offre_reduc_id = 1 WHERE user_id = 2; -- Paul Dupont
-UPDATE User SET offre_reduc_id = 2 WHERE user_id = 3; -- Emma Leroy
-UPDATE User SET offre_reduc_id = 3 WHERE user_id = 4; -- Lucas Martin
-UPDATE User SET offre_reduc_id = 1 WHERE user_id = 6; -- Julie Marchand
-UPDATE User SET offre_reduc_id = 2 WHERE user_id = 7; -- Nicolas Bernard
-UPDATE User SET offre_reduc_id = 3 WHERE user_id = 8; -- Marie Duval
 
--- 7. Insertion des réservations
+-- 6. Insertion des réservations
 INSERT INTO Reservation (date, heure, user_id, attraction_id, prix_total, prix_avec_reduc) VALUES
 ('2024-05-01', '10:30:00', 2, 2, 32.00, 25.60),
 ('2024-05-01', '11:00:00', 3, 3, 29.50, 26.55),
