@@ -1,10 +1,13 @@
 package com.example.walibixgr2eq6.Dao;
 
 import com.example.walibixgr2eq6.Model.Attraction;
+import com.example.walibixgr2eq6.Model.Reservation;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
 
 
 public class DAOAttraction {
@@ -70,5 +73,28 @@ public class DAOAttraction {
 
         return attractions;
     }
+
+    public void ajouter(Reservation reservation) {
+        try {
+            // connexion
+            Connection connexion = daoFactory.getConnection();
+
+            // Exécution de la requête INSERT INTO de l'objet product en paramètre
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "INSERT INTO reservation(reservation_id, date, heure, user_id, attraction_id, prix_total,prix_avec_reduc) VALUES (?,?,?,?,?,?,?)");
+            preparedStatement.setInt(1, reservation.getReservationId());
+            preparedStatement.setDate(2, Date.valueOf(reservation.getDate()));
+            preparedStatement.setTime(3, Time.valueOf(reservation.getHeure()));
+            preparedStatement.setInt(4, reservation.getUserId());
+            preparedStatement.setInt(5, reservation.getAttractionId());
+            preparedStatement.setDouble(6, reservation.getPrixTotal());
+            preparedStatement.setDouble(7, reservation.getPrixAvecReduc());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Ajout de la réservation impossible");
+        }
+    }
+
 }
 

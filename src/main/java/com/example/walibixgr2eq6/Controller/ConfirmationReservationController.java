@@ -1,6 +1,8 @@
 package com.example.walibixgr2eq6.Controller;
 
+import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Reservation;
+import com.example.walibixgr2eq6.Dao.DAOAttraction;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -27,19 +29,28 @@ public class ConfirmationReservationController {
         startProgressAnimation();
     }
 
+    private DAOAttraction daoAttraction;
     private Reservation reservation;
+
+    public ConfirmationReservationController() { //connection à la bdd
+        DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
+        this.daoAttraction = new DAOAttraction(daoFactory);
+    }
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
+            reservation.setUserId(1);
             System.out.println("Réservation en cours : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
             System.out.println("Attraction récupérée : " +reservation.getAttractionId());
             System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
             System.out.println("Créneau récupéré : " +reservation.getHeure());
+            System.out.println("User id : " +reservation.getUserId()); // choix id arbitraire pour tests
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }
+        daoAttraction.ajouter(reservation);
     }
 
     private void startProgressAnimation() { //animation de la barre qui avance
