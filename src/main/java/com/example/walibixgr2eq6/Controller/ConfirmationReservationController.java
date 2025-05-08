@@ -1,44 +1,42 @@
 package com.example.walibixgr2eq6.Controller;
-import javafx.animation.Timeline;
+
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 
+public class ConfirmationReservationController {
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
-public class ConfirmationReservationController implements Initializable {
     @FXML
-    private ImageView logo;
+    private Label attractionNomLabel; // Label pour afficher le nom de l'attraction
     @FXML
-    private ProgressBar progressBar;
-    @FXML
-    private Label texteReservationEnCours;
+    private Label creneauChoisiLabel; // Label pour afficher le créneau choisi
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // si ce n’est pas déjà fait, injecte ta ProgressBar
-        // @FXML private ProgressBar progressBar;
+    private String attractionNom;
+    private String creneauChoisi;
 
-        // Timeline : 0 → 100% en 5 secondes
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO,
-                        new KeyValue(progressBar.progressProperty(), 0)),
-                new KeyFrame(Duration.seconds(2),
-                        new KeyValue(progressBar.progressProperty(), 1))
-        );
-        timeline.setCycleCount(1);  // ou Timeline.INDEFINITE pour boucler
-        timeline.play();
+    // Méthode pour définir le nom de l'attraction
+    public void setAttractionNom(String attractionNom) {
+        this.attractionNom = attractionNom;
+        // Mettre à jour le label avec le nom de l'attraction
+        attractionNomLabel.setText(attractionNom);
     }
 
+    // Méthode pour définir le créneau choisi
+    public void setCreneauChoisi(String creneauChoisi) {
+        this.creneauChoisi = creneauChoisi;
+        // Mettre à jour le label avec le créneau choisi
+        creneauChoisiLabel.setText(creneauChoisi);
+    }
+
+    // Méthode pour confirmer la réservation et passer à la page suivante (par exemple, paiement ou autre étape)
+    @FXML
+    private void confirmerReservation() {
+        // Ici, tu pourrais enregistrer la réservation dans la base de données, afficher une confirmation, etc.
+        System.out.println("Réservation confirmée : " + attractionNom + " à " + creneauChoisi);
+    }
+
+    // Méthode pour revenir à la page précédente (par exemple, liste des attractions)
+    @FXML
+    private void revenirListeAttractions() {
+        // Logic pour revenir à la liste des attractions
+    }
 }
