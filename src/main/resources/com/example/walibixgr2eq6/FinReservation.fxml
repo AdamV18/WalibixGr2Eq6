@@ -9,7 +9,7 @@
             fx:controller="com.example.walibixgr2eq6.Controller.FinReservationController"
             xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <ImageView fx:id="logo" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
+        <ImageView fx:id="logo"  fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
             <image>
                 <Image url="@../../../images/logo_walibix.png" />
             </image>

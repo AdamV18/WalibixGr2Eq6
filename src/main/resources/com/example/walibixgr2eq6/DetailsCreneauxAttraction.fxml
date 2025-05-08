@@ -19,7 +19,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
-            <ImageView fitHeight="101.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoImageView" onMouseClicked="#onLogoClicked" fitHeight="101.0"  fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../images/logo_walibix.png" />
                </image>
