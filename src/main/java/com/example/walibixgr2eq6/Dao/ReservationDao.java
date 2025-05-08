@@ -64,4 +64,20 @@ public class ReservationDao {
         }
     }
 
+    public static void reassignReservationsToArchiveUser(int deletedUserId, int archiveUserId) {
+        String sql = "UPDATE reservation SET user_id = ? WHERE user_id = ?";
+
+        try (Connection conn = DaoFactory.getInstance("walibix", "root", "").getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, archiveUserId);
+            pstmt.setInt(2, deletedUserId);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

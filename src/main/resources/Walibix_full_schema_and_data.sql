@@ -26,10 +26,10 @@ CREATE TABLE User (
     nom VARCHAR(50),
     prenom VARCHAR(50),
     date_naissance DATE,
-    type_client ENUM('Invite', 'Membre'),
+    type_client ENUM('Invite', 'Membre', 'Archive', 'Admin'),
     offre_reduc_id INT NULL,
     FOREIGN KEY (offre_reduc_id) REFERENCES OffreReduction(offre_reduc_id),
-    CHECK (type_client IN ('Invite', 'Membre'))
+    CHECK (type_client IN ('Invite', 'Membre', 'Archive', 'Admin'))
 );
 
 CREATE TABLE Attraction (
@@ -73,7 +73,8 @@ INSERT INTO OffreReduction (nom, description, pourcentage, condition_age_min, co
 
 -- 5. Insertion des utilisateurs
 INSERT INTO User (email, mot_de_passe, admin, nom, prenom, date_naissance, type_client, offre_reduc_id) VALUES
-('admin@gmail.com', 'admin123', TRUE, 'Admin', 'Admin', '1980-01-01', 'Membre', NULL),
+('archive@zeflibguy.com', 'DSERFLGIUBH', false, 'Archive', 'Archive', '2000-01-01', 'Archive', NULL),
+('admin@gmail.com', 'admin123', TRUE, 'Admin', 'Admin', '1980-01-01', 'Admin', NULL),
 ('paul.dupont@gmail.com', 'paul123', FALSE, 'Dupont', 'Paul', '2005-04-15', 'Membre', 2),
 ('emma.leroy@gmail.com', 'emma123', FALSE, 'Leroy', 'Emma', '2000-07-22', 'Membre', 2),
 ('lucas.martin@gmail.com', 'lucas123', FALSE, 'Martin', 'Lucas', '1955-11-30', 'Membre',3),
@@ -86,12 +87,12 @@ INSERT INTO User (email, mot_de_passe, admin, nom, prenom, date_naissance, type_
 
 -- 6. Insertion des réservations
 INSERT INTO Reservation (date, heure, user_id, attraction_id, prix_total, prix_avec_reduc) VALUES
-('2024-05-01', '10:30:00', 2, 2, 32.00, 25.60),
-('2024-05-01', '11:00:00', 3, 3, 29.50, 26.55),
-('2024-05-01', '14:00:00', 4, 4, 28.00, 23.80),
-('2024-05-01', '15:30:00', 5, 8, 26.50, 26.50),
-('2024-02-03', '10:00:00', 7, 9, 29.00, 23.20),
-('2024-04-03', '11:15:00', 8, 3, 23.50, 18.80),
-('2024-04-03', '14:45:00', 9, 5, 22.00, 18.70),
-('2024-04-03', '16:00:00', 7, 6, 25.00, 22.50),
-('2024-04-02', '13:00:00', 6, 5, 27.00, 24.30);
+('2024-05-01', '10:30:00', 3, 2, 32.00, 25.60),
+('2024-05-01', '11:00:00', 4, 3, 29.50, 26.55),
+('2024-05-01', '14:00:00', 5, 4, 28.00, 23.80),
+('2024-05-01', '15:30:00', 6, 8, 26.50, 26.50),
+('2024-02-03', '10:00:00', 8, 9, 29.00, 23.20),
+('2024-04-03', '11:15:00', 9, 3, 23.50, 18.80),
+('2024-04-03', '14:45:00', 10, 5, 22.00, 18.70),
+('2024-04-03', '16:00:00', 8, 6, 25.00, 22.50),
+('2024-04-02', '13:00:00', 7, 5, 27.00, 24.30);

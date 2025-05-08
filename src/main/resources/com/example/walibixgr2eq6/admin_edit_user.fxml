@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.walibixgr2eq6.Controller.EditUserController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefWidth="900.0" prefHeight="600.0">
 
-</AnchorPane>
+    <top>
+        <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <children>
+                <Button fx:id="EditUserRetourButton" onAction="#RetourMenu" text="Retour à l'accueil admin"/>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.5">
+            <items>
+
+                <!-- Formulaire à gauche -->
+                <AnchorPane>
+                    <children>
+
+                        <Label layoutX="14.0" layoutY="14.0" text="Modifier un utilisateur">
+                            <font><Font size="18.0"/></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6"/></textFill>
+                        </Label>
+
+                        <TextField fx:id="emailField" layoutX="14.0" layoutY="50.0" prefWidth="300.0" promptText="Email" />
+                        <TextField fx:id="nomField" layoutX="14.0" layoutY="90.0" prefWidth="300.0" promptText="Nom" />
+                        <TextField fx:id="prenomField" layoutX="14.0" layoutY="130.0" prefWidth="300.0" promptText="Prénom" />
+                        <DatePicker fx:id="dateNaissancePicker" layoutX="14.0" layoutY="170.0" prefWidth="300.0" promptText="Date de naissance" />
+
+                        <ChoiceBox fx:id="typeClientBox" layoutX="14.0" layoutY="210.0" prefWidth="300.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Membre"/>
+                                    <String fx:value="Invite"/>
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+
+                        <HBox layoutX="14.0" layoutY="300.0" spacing="10.0">
+                            <children>
+                                <Button text="Modifier" onAction="#handleUpdateUser"/>
+                                <Button text="Supprimer" onAction="#handleDeleteUser"/>
+                            </children>
+                        </HBox>
+
+                    </children>
+                </AnchorPane>
+
+                <!-- Table des utilisateurs à droite -->
+                <AnchorPane>
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Liste des utilisateurs">
+                            <font><Font size="18.0"/></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6"/></textFill>
+                        </Label>
+
+                        <TableView fx:id="userTable" layoutX="14.0" layoutY="50.0" prefHeight="500.0" prefWidth="550.0">
+                            <columns>
+                                <TableColumn fx:id="colId" prefWidth="50.0" text="ID"/>
+                                <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email"/>
+                                <TableColumn fx:id="colNom" prefWidth="100.0" text="Nom"/>
+                                <TableColumn fx:id="colPrenom" prefWidth="100.0" text="Prénom"/>
+                                <TableColumn fx:id="colTypeClient" prefWidth="80.0" text="Type"/>
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+
+            </items>
+        </SplitPane>
+    </center>
+
+</BorderPane>
