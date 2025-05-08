@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -17,33 +17,37 @@
         <StackPane>
             <HBox alignment="TOP_LEFT">
                 <padding>
-                    <Insets top="0" left="10" right="0" bottom="0"/>
+                    <Insets bottom="0" left="10" right="0" top="0" />
                 </padding>
-                <ImageView fitHeight="150" fitWidth="150">
+                <ImageView fx:id="logoImageView" fitHeight="150" fitWidth="150" onMouseClicked="#onLogoClicked">
                     <image>
-                        <Image url="@images/logo.png" preserveRatio="true"/>
+                        <Image preserveRatio="true" url="@images/logo.png" />
                     </image>
                 </ImageView>
+
             </HBox>
 
-            <Label text="Créer un compte"
-                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Créer un compte" />
         </StackPane>
     </top>
 
     <!-- CENTER: -->
     <center>
         <VBox alignment="CENTER" spacing="12">
-            <TextField fx:id="prenomField" promptText="Prénom" maxWidth="250" />
-            <TextField fx:id="nomField" promptText="Nom" maxWidth="250" />
-            <TextField fx:id="dateNaissance" promptText="Date de naissance" maxWidth="250"/>
-            <TextField fx:id="emailField" promptText="Email" maxWidth="250" />
+            <TextField fx:id="prenomField" maxWidth="250" promptText="Prénom" />
+            <TextField fx:id="nomField" maxWidth="250" promptText="Nom" />
+            <HBox alignment="CENTER" maxWidth="250" prefHeight="25.0" prefWidth="252.0" spacing="5">
+                <ComboBox fx:id="dayCombo" prefWidth="70.0" promptText="Jour" />
+                <ComboBox fx:id="monthCombo" prefWidth="70" promptText="Mois" />
+                <ComboBox fx:id="yearCombo" prefWidth="90" promptText="Année" />
+            </HBox>
+            <TextField fx:id="emailField" maxWidth="250" promptText="Email" />
             <StackPane maxWidth="250">
                 <PasswordField fx:id="passwordField" promptText="Mot de passe" />
-                <TextField fx:id="passwordVisibleField" promptText="Mot de passe" visible="false" managed="false" />
+                <TextField fx:id="passwordVisibleField" managed="false" promptText="Mot de passe" visible="false" />
             </StackPane>
-            <CheckBox text="Afficher le mot de passe" onAction="#togglePasswordVisibility" />
-            <Button text="Créer le compte" onAction="#onSignupButtonClick" />
+            <CheckBox onAction="#togglePasswordVisibility" text="Afficher le mot de passe" />
+            <Button onAction="#onSignupButtonClick" text="Créer le compte" />
             <Label fx:id="signupMessageLabel" textFill="green" />
         </VBox>
     </center>

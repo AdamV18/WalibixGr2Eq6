@@ -10,9 +10,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,8 +23,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 import java.sql.Date;
 
@@ -33,27 +34,26 @@ public class SignupController implements Initializable {
     @FXML private PasswordField passwordField;
     @FXML private TextField passwordVisibleField;
     @FXML private Label signupMessageLabel;
-    @FXML private TextField dateNaissance;
-    @FXML private Label ageLabel;
+    @FXML private ComboBox<Integer> dayCombo;
+    @FXML private ComboBox<Integer> monthCombo;
+    @FXML private ComboBox<Integer> yearCombo;
+    @FXML private ImageView logoImageView;
 
     private final DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dateNaissance != null && ageLabel != null) {
-            dateNaissance.textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    if (newValue != null && !newValue.isEmpty()) {
-                        int age = calculateAge(newValue);
-                        ageLabel.setText(String.valueOf(age));
-                    } else {
-                        ageLabel.setText("");
-                    }
-                } catch (Exception e) {
-                    ageLabel.setText("Date invalide");
-                }
-            });
-        }
+        int currYear = LocalDate.now().getYear();
+        for (int y = currYear; y >= 1900; y--) yearCombo.getItems().add(y);
+        for (int m = 1; m <= 12; m++) monthCombo.getItems().add(m);
+        for (int d = 1; d <= 31; d++) dayCombo.getItems().add(d);
+
+        dayCombo.valueProperty().addListener((obs, ov, nv)
+                -> updateAgeLabel());
+        monthCombo.valueProperty().addListener((obs, ov, nv)
+                -> updateAgeLabel());
+        yearCombo.valueProperty().addListener((obs, ov, nv)
+                -> updateAgeLabel());
     }
 
     @FXML
@@ -63,9 +63,8 @@ public class SignupController implements Initializable {
             String prenom = prenomField.getText();
             String email = emailField.getText();
             String motDePasse = passwordField.isVisible() ? passwordField.getText() : passwordVisibleField.getText();
-            String dateTexte = dateNaissance.getText();
 
-            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || motDePasse.isEmpty() || dateTexte.isEmpty()) {
+            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || motDePasse.isEmpty()) {
                 signupMessageLabel.setText("Champs manquants, Veuillez remplir tous les champs.");
                 return;
             }
@@ -75,9 +74,9 @@ public class SignupController implements Initializable {
                 return;
             }
 
-            Date date = parseDateFromTextField(dateTexte);
-            if (date == null) {
-                signupMessageLabel.setText("Format de date invalide. Utilisez le format jj/mm/aaaa.");
+            LocalDate localDate = getSelectedBirthDate();
+            if (localDate == null || localDate.isAfter(LocalDate.now())) {
+                signupMessageLabel.setText("Veuillez sélectionner une date de naissance valide.");
                 return;
             }
 
@@ -87,8 +86,9 @@ public class SignupController implements Initializable {
                 return;
             }
 
-            int age = calculateAge(dateTexte);
-            int categorie = 0;
+            Date date = Date.valueOf(localDate);
+            int age = Period.between(localDate, LocalDate.now()).getYears();
+            int categorie;
 
             if (age < 18) {
                 categorie = 1;
@@ -131,6 +131,19 @@ public class SignupController implements Initializable {
     }
 
     @FXML
+    private void onLogoClicked(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/client-view.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 600);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     protected void togglePasswordVisibility() {
         boolean visible = passwordVisibleField.isVisible();
         if (visible) {
@@ -153,33 +166,24 @@ public class SignupController implements Initializable {
         return email.matches(regex);
     }
 
-    private int calculateAge(String dateStr) {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate birthDate = LocalDate.parse(dateStr, formatter);
-            LocalDate now = LocalDate.now();
-            return Period.between(birthDate, now).getYears();
-        } catch (DateTimeParseException e) {
-            System.out.println("Date invalide: " + dateStr);
-            return 0;
+    private void updateAgeLabel() {
+        LocalDate date = getSelectedBirthDate();
+        int calculatedAge = -1;
+        if (date != null && !date.isAfter(LocalDate.now())) {
+            calculatedAge = Period.between(date, LocalDate.now()).getYears();
+        } else {
+            calculatedAge = -1;
         }
     }
 
-    public Date parseDateFromTextField(String dateString) {
-        if (dateString == null || dateString.isEmpty()) {
-            System.out.println("Date vide");
-            return null;
-        }
-
+    private LocalDate getSelectedBirthDate() {
+        Integer day = dayCombo.getValue();
+        Integer month = monthCombo.getValue();
+        Integer year = yearCombo.getValue();
+        if (day == null || month == null || year == null) return null;
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(dateString, formatter);
-            return Date.valueOf(localDate);
-        } catch (DateTimeParseException e) {
-            System.out.println("Date invalide: " + dateString);
-            return null;
+            return LocalDate.of(year, month, day);
         } catch (Exception e) {
-            System.out.println("Erreur lors du parsing de la date: " + e.getMessage());
             return null;
         }
     }
