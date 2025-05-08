@@ -24,7 +24,7 @@ import java.sql.SQLException;
 public class StatisticsController {
 
     @FXML
-    private Button retourButton;
+    private Button StatsRetourButton;
 
     //private DaoFactory daoFactory;
     private DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
@@ -68,7 +68,7 @@ public class StatisticsController {
         }
 
         reservationParAttraction.setData(dataList);
-        reservationParAttraction.setLegendVisible(false);
+        //reservationParAttraction.setLegendVisible(false);
     }
 
 
@@ -106,7 +106,7 @@ public class StatisticsController {
         }
 
         userParTrancheAge.setData(dataList);
-        userParTrancheAge.setLegendVisible(false);
+        //userParTrancheAge.setLegendVisible(false);
     }
 
 
@@ -138,7 +138,7 @@ public class StatisticsController {
         }
 
         userParTypeClient.setData(dataList);
-        userParTypeClient.setLegendVisible(false);
+        //userParTypeClient.setLegendVisible(false);
     }
 
 
@@ -213,9 +213,9 @@ public class StatisticsController {
     }
 
 
-    public void StatsRetourMenu(ActionEvent event) {
+    public void RetourMenu(ActionEvent event) {
         try {
-            Stage stage = (Stage) retourButton.getScene().getWindow();
+            Stage stage = (Stage) StatsRetourButton.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/walibixgr2eq6/admin-view.fxml"));
             stage.setScene(new Scene(root, 900, 600));
         } catch (IOException e) {
