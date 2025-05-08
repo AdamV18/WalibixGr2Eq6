@@ -40,18 +40,7 @@
 
             <ComboBox fx:id="comboBox" prefWidth="300.0" promptText="Attraction - Type"
                       visibleRowCount="8">
-               <items>
-                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Pulsar - Water Coaster" />
-                     <String fx:value="Vampire - Roller Coaster" />
-                     <String fx:value="Loup-Garou - Wooden Coaster" />
-                     <String fx:value="Dalton Terror - Drop Tower" />
-                     <String fx:value="Challenge of Tutankhamon - Dark Ride" />
-                     <String fx:value="Psyké Underground - Launch Coaster" />
-                     <String fx:value="Tiki-Waka - Family Coaster" />
-                     <String fx:value="Flashback - Water Ride" />
-                  </FXCollections>
-               </items>
+
             </ComboBox>
 
             <Button text="Valider" onAction="#valider">

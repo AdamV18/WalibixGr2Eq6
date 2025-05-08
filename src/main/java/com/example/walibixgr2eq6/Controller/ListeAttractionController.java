@@ -43,7 +43,13 @@ public class ListeAttractionController {
 
     @FXML
     public void initialize() {
-       // à voir si on rajoute pour cacher le bouton tant que rien n'est choisi mais pas forcement necessaire
+        // Récupère toutes les attractions depuis la base de données
+        var attractions = daoAttraction.getAllAttractions();
+
+        for (Attraction attraction : attractions) {
+            String item = attraction.getNom() + " - " + attraction.getTypeAttrac();
+            comboBox.getItems().add(item);
+        }
     }
 
     @FXML

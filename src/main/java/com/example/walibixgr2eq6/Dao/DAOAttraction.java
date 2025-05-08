@@ -43,9 +43,32 @@ public class DAOAttraction {
         return null;
     }
 
-    // permet de creer la liste pour affichage grace a bdd
+    // permet de creer la liste pour affichage grace a bdd et pas direct dans la combobox
     public List<Attraction> getAllAttractions() {
-        return null;
+        List<Attraction> attractions = new ArrayList<>();
+
+        try {
+            Connection connexion = daoFactory.getConnection();
+            Statement statement = connexion.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM attraction");
+
+            while (resultSet.next()) {
+                int attractionId = resultSet.getInt("attraction_id");
+                String nom = resultSet.getString("nom");
+                String typeAttrac = resultSet.getString("type_attrac");
+                String description = resultSet.getString("description");
+                double prixBase = resultSet.getDouble("prix_base");
+                String image = resultSet.getString("image");
+
+                attractions.add(new Attraction(attractionId, nom, typeAttrac, description, prixBase, image));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erreur :" + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return attractions;
     }
 }
 
