@@ -21,7 +21,7 @@
                 </padding>
                 <ImageView fx:id="logoImageView" fitHeight="150" fitWidth="150" onMouseClicked="#onLogoClicked">
                     <image>
-                        <Image preserveRatio="true" url="@images/logo.png" />
+                        <Image preserveRatio="true" url="@../../../images/logo.png" />
                     </image>
                 </ImageView>
 

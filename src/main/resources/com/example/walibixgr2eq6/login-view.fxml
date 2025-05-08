@@ -21,7 +21,7 @@
                 </padding>
                 <ImageView fitHeight="150" fitWidth="150">
                     <image>
-                        <Image url="@images/logo.png" preserveRatio="true"/>
+                        <Image url="@../../../images/logo.png" preserveRatio="true"/>
                     </image>
                 </ImageView>
             </HBox>

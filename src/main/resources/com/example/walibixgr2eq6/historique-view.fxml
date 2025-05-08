@@ -17,7 +17,7 @@
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
                 <ImageView fitHeight="150" fitWidth="150">
                     <image>
-                        <Image preserveRatio="true" url="@images/logo.png" />
+                        <Image preserveRatio="true" url="@../../../images/logo.png" />
                     </image>
                 </ImageView>
             </HBox>
