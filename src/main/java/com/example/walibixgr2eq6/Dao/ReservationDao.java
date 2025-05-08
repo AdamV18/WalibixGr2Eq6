@@ -11,6 +11,7 @@ import java.util.List;
 public class ReservationDao {
 
     private final Connection connection;
+    private static DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
     public ReservationDao(Connection connection) {
         this.connection = connection;
@@ -47,4 +48,20 @@ public class ReservationDao {
 
         return reservations;
     }
+
+    public static void reassignAttractionInReservations(int oldAttractionId, int newAttractionId) {
+        String sql = "UPDATE Reservation SET attraction_id = ? WHERE attraction_id = ?";
+
+        String query = "UPDATE Reservation SET attraction_id = ? WHERE attraction_id = ?";
+
+        try (Connection conn = daoFactory.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, newAttractionId);
+            pstmt.setInt(2, oldAttractionId);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
