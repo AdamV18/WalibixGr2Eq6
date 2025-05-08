@@ -35,9 +35,9 @@
     <center>
         <VBox spacing="25" alignment="CENTER">
             <VBox spacing="10" alignment="CENTER">
+                <Button text="Gérer les utilisateurs" onAction="#onManageUser" minWidth="250" />
                 <Button text="Gérer les attractions" onAction="#onManageAttractions" minWidth="250" />
                 <Button text="Gérer les réductions" onAction="#onManageReductions" minWidth="250" />
-                <Button text="Voir les clients" onAction="#onViewClients" minWidth="250" />
                 <Button fx:id="statsButton" text="Voir les statistiques" onAction="#onViewStatistics" minWidth="250" />
             </VBox>
         </VBox>

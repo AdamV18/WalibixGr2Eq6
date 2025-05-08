@@ -16,19 +16,21 @@ public class AdminController {
     private Button statsButton;
 
     @FXML
-    protected void onManageAttractions() {
+    protected void onManageUser() {
+        //showMessage("Redirection vers la gestion des utilisateurs.");
+        switchScene("admin_edit_user.fxml");
+    }
 
-        showMessage("Redirection vers la gestion des attractions.");
+    @FXML
+    protected void onManageAttractions() {
+        //showMessage("Redirection vers la gestion des attractions.");
+        switchScene("admin_edit_attraction.fxml");
     }
 
     @FXML
     protected void onManageReductions() {
-        showMessage("Redirection vers la gestion des réductions.");
-    }
-
-    @FXML
-    protected void onViewClients() {
-        showMessage("Redirection vers la liste des clients.");
+        //showMessage("Redirection vers la gestion des réductions.");
+        switchScene("admin_edit_offrereduc.fxml");
     }
 
     @FXML
