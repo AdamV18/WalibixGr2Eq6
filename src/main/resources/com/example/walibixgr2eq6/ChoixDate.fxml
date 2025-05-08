@@ -11,7 +11,7 @@
 <?import javafx.geometry.Insets?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.ChoixDateController">
     <top>
         <ImageView fitHeight="100.0" pickOnBounds="true"
                    preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
@@ -26,7 +26,7 @@
                    text="Veuillez choisir la date souhaitée"/>
             <DatePicker fx:id="choixDate" prefHeight="30" prefWidth="300"
                         promptText="Choisissez le jour" BorderPane.alignment="CENTER"/>
-            <Button fx:id="validerJour" mnemonicParsing="false" text="Valider le jour"/>
+            <Button fx:id="validerJour" mnemonicParsing="false" onAction="#confirmerDate" text="Valider le jour"/>
         </VBox>
     </center>
 </BorderPane>
