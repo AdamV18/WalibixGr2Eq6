@@ -1,5 +1,7 @@
 package com.example.walibixgr2eq6.Controller;
 
+import com.example.walibixgr2eq6.Session;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,6 +39,12 @@ public class AdminController {
     protected void onViewStatistics() {
         //showMessage("Redirection vers les statistiques.");
         switchScene("Statistics.fxml");
+    }
+
+    @FXML
+    private void onLogoutClick() {
+        Session.clear();
+        switchScene("start-view.fxml");
     }
 
     private void showMessage(String msg) {

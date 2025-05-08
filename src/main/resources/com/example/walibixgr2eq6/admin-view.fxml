@@ -39,6 +39,7 @@
                 <Button text="Gérer les attractions" onAction="#onManageAttractions" minWidth="250" />
                 <Button text="Gérer les réductions" onAction="#onManageReductions" minWidth="250" />
                 <Button fx:id="statsButton" text="Voir les statistiques" onAction="#onViewStatistics" minWidth="250" />
+                <Button text="Se déconnecter" onAction="#onLogoutClick"  minWidth="200"/>
             </VBox>
         </VBox>
     </center>
