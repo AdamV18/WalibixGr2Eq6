@@ -68,7 +68,7 @@ public class StatisticsController {
         }
 
         reservationParAttraction.setData(dataList);
-        //reservationParAttraction.setLegendVisible(false);
+        reservationParAttraction.setLegendVisible(false);
     }
 
 
@@ -106,7 +106,7 @@ public class StatisticsController {
         }
 
         userParTrancheAge.setData(dataList);
-        //userParTrancheAge.setLegendVisible(false);
+        userParTrancheAge.setLegendVisible(false);
     }
 
 
@@ -138,7 +138,7 @@ public class StatisticsController {
         }
 
         userParTypeClient.setData(dataList);
-        //userParTypeClient.setLegendVisible(false);
+        userParTypeClient.setLegendVisible(false);
     }
 
 
