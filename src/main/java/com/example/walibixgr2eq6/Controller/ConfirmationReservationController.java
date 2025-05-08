@@ -1,5 +1,6 @@
 package com.example.walibixgr2eq6.Controller;
 
+import com.example.walibixgr2eq6.Model.Reservation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -24,6 +25,21 @@ public class ConfirmationReservationController {
     @FXML
     public void initialize() {
         startProgressAnimation();
+    }
+
+    private Reservation reservation;
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+        if (reservation != null) {
+            System.out.println("Réservation en cours : \n");
+            System.out.println("Date récupérée : " + reservation.getDate());
+            System.out.println("Attraction récupérée : " +reservation.getAttractionId());
+            System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
+            System.out.println("Créneau récupéré : " +reservation.getHeure());
+        } else {
+            System.out.println("Erreur : Reservation nulle ou date nulle");
+        }
     }
 
     private void startProgressAnimation() { //animation de la barre qui avance
