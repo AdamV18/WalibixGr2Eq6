@@ -58,6 +58,7 @@ public class DetailsCreneauxAttractionController {
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
+            System.out.println("Détails créneaux : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
             System.out.println("Attraction récupérée : " +reservation.getAttractionId());
         } else {
@@ -77,6 +78,8 @@ public class DetailsCreneauxAttractionController {
             descriptionAttraction.setText(attraction.getDescription());
             typeAttraction.setText(attraction.getTypeAttrac());
             prixBase.setText(attraction.getPrixBase() + " €");
+            reservation.setPrixTotal(attraction.getPrixBase());
+            System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
 
             if (attraction.getImage() != null) { //recup l'image associée à l'attraction
                 Image image = new Image(getClass().getResourceAsStream("/images/" + attraction.getImage()));
@@ -122,6 +125,10 @@ public class DetailsCreneauxAttractionController {
             try { //affichage de ConfirmationReservation
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ConfirmationReservation.fxml"));
                 Parent root = loader.load();
+
+                ConfirmationReservationController confirmationReservationController = loader.getController();
+                confirmationReservationController.setReservation(reservation);
+
                 Stage stage = (Stage) boutonValider.getScene().getWindow();
                 stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Confirmation Reservation");
