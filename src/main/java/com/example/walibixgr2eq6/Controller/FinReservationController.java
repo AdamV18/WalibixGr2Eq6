@@ -21,7 +21,7 @@ public class FinReservationController {
     @FXML
     private void retourAccueil() {
         try { // retour sur la page de choix de l'attraction parce que pour l'instant on a pas accès à l'accueil
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ListeAttraction.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ChoixDate.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) boutonRetourAccueil.getScene().getWindow(); //affiche l'autre page

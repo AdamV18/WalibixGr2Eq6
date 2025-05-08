@@ -3,6 +3,7 @@ package com.example.walibixgr2eq6.Controller;
 import com.example.walibixgr2eq6.Dao.DAOAttraction;
 import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Attraction;
+import com.example.walibixgr2eq6.Model.Reservation;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 public class DetailsCreneauxAttractionController {
 
@@ -46,12 +48,22 @@ public class DetailsCreneauxAttractionController {
 
     private DAOAttraction daoAttraction;
     private String attractionNom;
+    private Reservation reservation;
 
     public DetailsCreneauxAttractionController() { //connection à la bdd
         DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
         this.daoAttraction = new DAOAttraction(daoFactory);
     }
 
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+        if (reservation != null) {
+            System.out.println("Date récupérée : " + reservation.getDate());
+            System.out.println("Attraction récupérée : " +reservation.getAttractionId());
+        } else {
+            System.out.println("Erreur : Reservation nulle ou date nulle");
+        }
+    }
     public void setAttractionNom(String nom) { //pour recup le nom de l'attraction et ses infos, à voir pour utiliser la méthode d'ines
         this.attractionNom = nom;
         detailsAttraction();
@@ -72,11 +84,11 @@ public class DetailsCreneauxAttractionController {
             }
 
             creneauxComboBox.setItems(FXCollections.observableArrayList( //pouur remplir la combobox avec les différents créneaux possibles
-                    "10h00 - 10h30", "10h30 - 11h00", "11h00 - 11h30", "11h30 - 12h00",
-                    "12h00 - 12h30", "12h30 - 13h00", "13h00 - 13h30", "13h30 - 14h00",
-                    "14h00 - 14h30", "14h30 - 15h00", "15h00 - 15h30", "15h30 - 16h00",
-                    "16h00 - 16h30", "16h30 - 17h00", "17h00 - 17h30", "17h30 - 18h00",
-                    "18h00 - 18h30", "18h30 - 19h00"
+                    "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00",
+                    "12:00 - 12:30", "12:30 - 13:00", "13:00 - 13:30", "13:30 - 14:00",
+                    "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00",
+                    "16:00 - 16:30", "16:30 - 17:00", "17:00 - 17:30", "17:30 - 18:00",
+                    "18:00 - 18:30", "18:30 - 19:00"
             ));
         } else {
             nomLabel.setText("L'attraction n'a pas été trouvée");
@@ -88,7 +100,6 @@ public class DetailsCreneauxAttractionController {
         try { //retour sur la page de choix de l'attraction
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ListeAttraction.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) boutonRetour.getScene().getWindow(); //affiche l'autre page
             stage.setScene(new Scene(root, 900, 600));
             stage.setTitle("Choix Attractions");
@@ -103,10 +114,14 @@ public class DetailsCreneauxAttractionController {
         String choix = creneauxComboBox.getValue();
 
         if (choix != null && !choix.isEmpty()) { //verif si un creneau est choisi
+            String heure = choix.split(" - ")[0];
+            LocalTime creneau = LocalTime.parse(heure);
+            reservation.setHeure(creneau);
+            System.out.println("Créneau récupéré : " +creneau);
+
             try { //affichage de ConfirmationReservation
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ConfirmationReservation.fxml"));
                 Parent root = loader.load();
-
                 Stage stage = (Stage) boutonValider.getScene().getWindow();
                 stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Confirmation Reservation");

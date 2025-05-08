@@ -3,6 +3,7 @@ package com.example.walibixgr2eq6.Controller;
 import com.example.walibixgr2eq6.Dao.DAOAttraction;
 import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Attraction;
+import com.example.walibixgr2eq6.Model.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,17 @@ public class ListeAttractionController {
         this.daoAttraction = new DAOAttraction(daoFactory);
     }
 
+    private Reservation reservation;
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+        if (reservation != null) {
+            System.out.println("Date récupérée : " + reservation.getDate());
+        } else {
+            System.out.println("Erreur : Reservation nulle ou date nulle");
+        }
+    }
+
     @FXML
     public void initialize() {
        // à voir si on rajoute pour cacher le bouton tant que rien n'est choisi mais pas forcement necessaire
@@ -39,16 +51,23 @@ public class ListeAttractionController {
         String choix = comboBox.getValue();
         if (choix != null && !choix.isEmpty()) { //verifie qu'une attraction est choisie
             String nomAttraction = choix.split(" - ")[0]; // recupère le nom de l'attraction avant le - dans la combobox
+            // recup nom attraction
             Attraction attraction = daoAttraction.getAttractionNom(nomAttraction);
+            // recup id attraction
+            int idAttraction = attraction.getAttractionId();
+            reservation.setAttractionId(idAttraction);
+            System.out.println("Attraction choisie : " + nomAttraction + " - " + idAttraction);
+            // passage fenetre suivante
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/DetailsCreneauxAttraction.fxml")); //va lire le fichier fxml
                 Parent root = loader.load();
 
-                DetailsCreneauxAttractionController controller = loader.getController();
-                controller.setAttractionNom(attraction.getNom()); // passe à la page des creneaux de l'attraction choisir
+                DetailsCreneauxAttractionController detailsCreneauxAttractionController = loader.getController();
+                detailsCreneauxAttractionController.setReservation(reservation);
+                detailsCreneauxAttractionController.setAttractionNom(nomAttraction);
 
                 Stage stage = (Stage) comboBox.getScene().getWindow();
-                stage.setScene(new Scene(root));
+                stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Attraction"); //titre de la page
                 stage.show(); //affiche la nouvelle page avec les infos de l'attraction choisie
             } catch (IOException e) {

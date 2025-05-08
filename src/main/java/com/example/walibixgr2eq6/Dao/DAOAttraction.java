@@ -3,6 +3,8 @@ package com.example.walibixgr2eq6.Dao;
 import com.example.walibixgr2eq6.Model.Attraction;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DAOAttraction {
@@ -22,14 +24,15 @@ public class DAOAttraction {
             statement.setString(1, nom); //on recup le nom de l'attraction qui est en paramètre
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return new Attraction( //recup les info de l'attraction
-                            resultSet.getInt("attraction_id"),
-                            resultSet.getString("nom"),
-                            resultSet.getString("type_attrac"),
-                            resultSet.getString("description"),
-                            resultSet.getDouble("prix_base"),
-                            resultSet.getString("image")
-                    );
+                            //recup les info de l'attraction
+                            int attractionId = resultSet.getInt("attraction_id");
+                            nom = resultSet.getString("nom");
+                            String typeAttrac = resultSet.getString("type_attrac");
+                            String description = resultSet.getString("description");
+                            double prixBase = resultSet.getDouble("prix_base");
+                            String image = resultSet.getString("image");
+                            System.out.println("Attraction sélectionnée : Id -> : " + attractionId + " Nom : " + nom + " Type : " +typeAttrac);
+                            return new Attraction(attractionId, nom, typeAttrac, description, prixBase, image);
                 }
             }
         } catch (SQLException e) {
@@ -39,4 +42,10 @@ public class DAOAttraction {
 
         return null;
     }
+
+    // permet de creer la liste pour affichage grace a bdd
+    public List<Attraction> getAllAttractions() {
+        return null;
+    }
 }
+
