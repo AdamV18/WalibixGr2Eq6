@@ -3,6 +3,7 @@ package com.example.walibixgr2eq6.Controller;
 import com.example.walibixgr2eq6.HelloApplication;
 import com.example.walibixgr2eq6.Model.Reservation;
 import com.example.walibixgr2eq6.Dao.DaoFactory;
+import com.example.walibixgr2eq6.Session;
 
 import javafx.scene.Node;
 import javafx.fxml.FXML;
@@ -51,6 +52,10 @@ public class ChoixDateController {
         LocalDate dateChoisie = choixDate.getValue();
         reservation.setDate(dateChoisie);
         System.out.println("Date choisie : " + dateChoisie);
+
+        int userId = Session.getCurrentUserId();
+        reservation.setUserId(userId);
+        System.out.println("Id de user connecté : " + userId);
 
         try {
             URL fxmlUrl = HelloApplication.class.getResource("/com/example/walibixgr2eq6/ListeAttraction.fxml");

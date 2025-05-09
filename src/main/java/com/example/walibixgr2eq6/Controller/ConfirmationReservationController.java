@@ -3,6 +3,7 @@ package com.example.walibixgr2eq6.Controller;
 import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Reservation;
 import com.example.walibixgr2eq6.Dao.DAOAttraction;
+import com.example.walibixgr2eq6.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -43,10 +44,10 @@ public class ConfirmationReservationController {
             reservation.setUserId(1);
             System.out.println("Réservation en cours : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
+            System.out.println("Id du client recupéré : " +Session.getCurrentUserId());
             System.out.println("Attraction récupérée : " +reservation.getAttractionId());
             System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
             System.out.println("Créneau récupéré : " +reservation.getHeure());
-            System.out.println("User id : " +reservation.getUserId()); // choix id arbitraire pour tests
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }

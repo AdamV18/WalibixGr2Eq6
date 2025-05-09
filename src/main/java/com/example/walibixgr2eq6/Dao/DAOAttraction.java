@@ -2,6 +2,7 @@ package com.example.walibixgr2eq6.Dao;
 
 import com.example.walibixgr2eq6.Model.Attraction;
 import com.example.walibixgr2eq6.Model.Reservation;
+import com.example.walibixgr2eq6.Session;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class DAOAttraction {
             preparedStatement.setInt(1, reservation.getReservationId());
             preparedStatement.setDate(2, Date.valueOf(reservation.getDate()));
             preparedStatement.setTime(3, Time.valueOf(reservation.getHeure()));
-            preparedStatement.setInt(4, reservation.getUserId());
+            preparedStatement.setInt(4, Session.getCurrentUserId());
             preparedStatement.setInt(5, reservation.getAttractionId());
             preparedStatement.setDouble(6, reservation.getPrixTotal());
             preparedStatement.setDouble(7, reservation.getPrixAvecReduc());

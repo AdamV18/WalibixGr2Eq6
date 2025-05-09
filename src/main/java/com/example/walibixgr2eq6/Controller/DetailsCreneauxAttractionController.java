@@ -4,6 +4,7 @@ import com.example.walibixgr2eq6.Dao.DAOAttraction;
 import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Attraction;
 import com.example.walibixgr2eq6.Model.Reservation;
+import com.example.walibixgr2eq6.Session;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +63,7 @@ public class DetailsCreneauxAttractionController {
         if (reservation != null) {
             System.out.println("Détails créneaux : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
+            System.out.println("Id du client recupéré : " +Session.getCurrentUserId());
             System.out.println("Attraction récupérée : " +reservation.getAttractionId());
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");
