@@ -103,8 +103,13 @@ public class DetailsCreneauxAttractionController {
     @FXML
     private void retour() { //gère le bouton retour
         try { //retour sur la page de choix de l'attraction
+            reservation.setAttractionId(0);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ListeAttraction.fxml"));
             Parent root = loader.load();
+
+            ListeAttractionController ListeAttractioncontroller = loader.getController();
+            ListeAttractioncontroller.setReservation(reservation);
+
             Stage stage = (Stage) boutonRetour.getScene().getWindow(); //affiche l'autre page
             stage.setScene(new Scene(root, 900, 600));
             stage.setTitle("Choix Attractions");
