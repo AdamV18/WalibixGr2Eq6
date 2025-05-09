@@ -19,7 +19,7 @@ public class ClientController {
     @FXML
     private void onNouvelleReservationClick(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/reservation-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ChoixDate.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
