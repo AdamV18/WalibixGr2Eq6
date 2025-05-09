@@ -8,18 +8,23 @@
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.walibixgr2eq6.Controller.DetailsCreneauxAttractionController">
 
    <top>
-      <HBox alignment="CENTER_LEFT" spacing="10.0">
+      <StackPane prefHeight="100.0">
          <children>
-            <ImageView fx:id="logoImageView" fitHeight="101.0" fitWidth="155.0" onMouseClicked="#onLogoClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/logo_walibix.png" />
-               </image>
-            </ImageView>
-            <Region HBox.hgrow="ALWAYS" />
-            <Label fx:id="nomLabel" style="-fx-font-size: 40px;" text="Nom de l'attraction" />
-            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <ImageView fx:id="logoImageView" fitHeight="101.0" fitWidth="155.0" onMouseClicked="#onLogoClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo_walibix.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="nomLabel"
+                   text="Nom de l'attraction"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;"
+                   StackPane.alignment="CENTER" />
          </children>
-      </HBox>
+      </StackPane>
    </top>
 
    <center>
@@ -38,17 +43,20 @@
 
    <bottom>
       <HBox alignment="CENTER" spacing="10.0">
-         <Button fx:id="boutonRetour" onAction="#retour" text="Retour" />
+         <VBox translateY="-20.0">
+            <Button fx:id="boutonRetour" onAction="#retour" text="Retour" />
+         </VBox>
       </HBox>
    </bottom>
+
    <right>
       <VBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="typeAttraction" style="-fx-font-size: 24px;" text="Type de l'attraction" />
-            <Text fx:id="descriptionAttraction" style="-fx-font-size: 24px;" text="Description ici" textAlignment="CENTER" wrappingWidth="400.0" />
-            <Label fx:id="prixBase" style="-fx-font-size: 22px;" text="Prix : €" />
+            <Label fx:id="typeAttraction" style="-fx-font-size: 14px;" text="Type de l'attraction" />
+            <Text fx:id="descriptionAttraction" style="-fx-font-size: 18px;" text="Description ici" textAlignment="CENTER" wrappingWidth="400.0" />
+            <Label fx:id="prixBase" style="-fx-font-size: 16px;" text="Prix : €" />
 
-            <Label style="-fx-font-size: 20px;" text="Choisissez votre créneau :" />
+            <Label style="-fx-font-size: 18px;" text="Choisissez votre créneau :" />
             <ComboBox fx:id="creneauxComboBox" prefWidth="200.0" />
 
             <HBox alignment="CENTER" spacing="10.0">

@@ -20,10 +20,10 @@
             <children>
                 <Label fx:id="texteFinReservation" alignment="CENTER" text="Réservation finie !">
                     <font>
-                        <Font size="40.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
-                <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retourner à l'accueil" onAction="#retourAccueil" />
+                <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retour espace client" onAction="#retourAccueil" />
             </children>
         </VBox>
     </center>

@@ -20,7 +20,7 @@ public class ClientController {
     private void onNouvelleReservationClick(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ChoixDate.fxml"));
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(loader.load(), 900, 600);
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
@@ -36,7 +36,7 @@ public class ClientController {
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/historique-view.fxml"));
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(loader.load(), 900, 600);
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {

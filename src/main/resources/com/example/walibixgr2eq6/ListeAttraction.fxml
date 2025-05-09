@@ -12,44 +12,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.walibixgr2eq6.Controller.ListeAttractionController"
             prefHeight="400.0" prefWidth="600.0">
 
    <top>
-
-      <HBox alignment="TOP_LEFT" spacing="20.0" prefHeight="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="logoImageView" onMouseClicked="#onLogoClicked"
-                       fitHeight="101.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+      <StackPane>
+         <HBox alignment="TOP_LEFT">
+            <padding>
+               <Insets top="0" left="10" right="0" bottom="0"/>
+            </padding>
+            <ImageView fitHeight="101.0" fitWidth="155.0">
                <image>
-                  <Image url="@../../../images/logo_walibix.png" />
+                  <Image url="@../../../images/logo_walibix.png" preserveRatio="true"/>
                </image>
             </ImageView>
-         </children>
-      </HBox>
+         </HBox>
+         <Label text="Choisissez l'attraction"
+                style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+      </StackPane>
    </top>
+
 
    <center>
       <VBox alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Quelle attraction voulez-vous choisir ?">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-
             <ComboBox fx:id="comboBox" prefWidth="300.0" promptText="Attraction - Type"
                       visibleRowCount="8">
-
             </ComboBox>
 
-            <Button text="Valider" onAction="#valider">
-
-            <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
+            <Button text="Valider" onAction="#valider"/>
          </children>
       </VBox>
    </center>
