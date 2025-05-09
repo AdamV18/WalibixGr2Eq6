@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.ClientController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
+
+    <!-- TOP: -->
+    <top>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="0" left="10" right="0" bottom="0"/>
+                </padding>
+                <ImageView fitHeight="150" fitWidth="150">
+                    <image>
+                        <Image url="@../../../images/logo.png" preserveRatio="true"/>
+                    </image>
+                </ImageView>
+            </HBox>
+            <Label text="Espace client"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
+    </top>
+
+    <!-- CENTER: -->
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Button text="Nouvelle réservation"
+                    fx:id="nouvelleReservationButton"
+                    onAction="#onNouvelleReservationClick"
+                    minWidth="200" />
+            <Button text="Historique des réservations"
+                    fx:id="historiqueButton"
+                    onAction="#onHistoriqueClick"
+                    minWidth="200" />
+            <Button text="Se déconnecter"
+                    fx:id="logoutButton"
+                    onAction="#onLogoutClick"
+                    minWidth="200"/>
+        </VBox>
+    </center>
+</BorderPane>

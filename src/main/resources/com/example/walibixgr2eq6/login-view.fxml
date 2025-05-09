@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.LoginController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
+
+    <!-- TOP: -->
+    <top>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="0" left="10" right="0" bottom="0"/>
+                </padding>
+                <ImageView fitHeight="150" fitWidth="150">
+                    <image>
+                        <Image url="@../../../images/logo.png" preserveRatio="true"/>
+                    </image>
+                </ImageView>
+            </HBox>
+            <Label text="Veuillez vous connecter"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
+    </top>
+
+    <!-- CENTER: -->
+    <center>
+        <VBox spacing="12" alignment="CENTER">
+            <TextField fx:id="emailField" promptText="Email" maxWidth="250" />
+            <StackPane maxWidth="250">
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" />
+                <TextField fx:id="passwordVisibleField" promptText="Mot de passe" visible="false" managed="false" />
+            </StackPane>
+            <CheckBox text="Afficher le mot de passe" onAction="#togglePasswordVisibility" />
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Se connecter" onAction="#onLoginButtonClick" />
+            </HBox>
+            <Label fx:id="errorLabel" textFill="red" />
+        </VBox>
+    </center>
+</BorderPane>

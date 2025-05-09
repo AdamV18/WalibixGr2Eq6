@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.SignupController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
+
+    <!-- TOP: -->
+    <top>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets bottom="0" left="10" right="0" top="0" />
+                </padding>
+                <ImageView fx:id="logoImageView" fitHeight="150" fitWidth="150" onMouseClicked="#onLogoClicked">
+                    <image>
+                        <Image preserveRatio="true" url="@../../../images/logo.png" />
+                    </image>
+                </ImageView>
+
+            </HBox>
+
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Créer un compte" />
+        </StackPane>
+    </top>
+
+    <!-- CENTER: -->
+    <center>
+        <VBox alignment="CENTER" spacing="12">
+            <TextField fx:id="prenomField" maxWidth="250" promptText="Prénom" />
+            <TextField fx:id="nomField" maxWidth="250" promptText="Nom" />
+            <HBox alignment="CENTER" maxWidth="250" prefHeight="25.0" prefWidth="252.0" spacing="5">
+                <ComboBox fx:id="dayCombo" prefWidth="70.0" promptText="Jour" />
+                <ComboBox fx:id="monthCombo" prefWidth="70" promptText="Mois" />
+                <ComboBox fx:id="yearCombo" prefWidth="90" promptText="Année" />
+            </HBox>
+            <TextField fx:id="emailField" maxWidth="250" promptText="Email" />
+            <StackPane maxWidth="250">
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" />
+                <TextField fx:id="passwordVisibleField" managed="false" promptText="Mot de passe" visible="false" />
+            </StackPane>
+            <CheckBox onAction="#togglePasswordVisibility" text="Afficher le mot de passe" />
+            <Button onAction="#onSignupButtonClick" text="Créer le compte" />
+            <Label fx:id="signupMessageLabel" textFill="green" />
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.AdminController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
+
+    <!-- TOP: -->
+    <top>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="0" left="10" right="0" bottom="0"/>
+                </padding>
+                <ImageView fitHeight="150" fitWidth="150">
+                    <image>
+                        <Image url="@../../../images/logo.png" preserveRatio="true"/>
+                    </image>
+                </ImageView>
+            </HBox>
+
+            <Label text="Espace Administrateur"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
+    </top>
+
+    <!-- CENTER: -->
+    <center>
+        <VBox spacing="25" alignment="CENTER">
+            <VBox spacing="10" alignment="CENTER">
+                <Button text="Gérer les utilisateurs" onAction="#onManageUser" minWidth="250" />
+                <Button text="Gérer les attractions" onAction="#onManageAttractions" minWidth="250" />
+                <Button text="Gérer les réductions" onAction="#onManageReductions" minWidth="250" />
+                <Button fx:id="statsButton" text="Voir les statistiques" onAction="#onViewStatistics" minWidth="250" />
+                <Button text="Se déconnecter" onAction="#onLogoutClick"  minWidth="200"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.EditAttractionController"
+            prefWidth="900.0" prefHeight="600.0">
+
+    <!-- Haut : bouton de retour -->
+    <top>
+        <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <children>
+                <Button fx:id="EditAttracRetourButton" onAction="#RetourMenu" text="Retour à l'accueil admin" />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Centre : SplitPane avec formulaire et table -->
+    <center>
+        <SplitPane dividerPositions="0.5">
+            <items>
+
+                <!-- Formulaire à gauche -->
+                <AnchorPane>
+                    <children>
+
+                        <Label layoutX="14.0" layoutY="14.0" text="Modifier ou créer une attraction">
+                            <font><Font size="18.0" /></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6" /></textFill>
+                        </Label>
+
+                        <TextField fx:id="nomField" layoutX="14.0" layoutY="60.0" prefWidth="300.0" promptText="Nom" />
+                        <TextField fx:id="typeField" layoutX="14.0" layoutY="100.0" prefWidth="300.0" promptText="Type" />
+                        <TextField fx:id="prixField" layoutX="14.0" layoutY="140.0" prefWidth="300.0" promptText="Prix (€)" />
+                        <TextField fx:id="imageField" layoutX="14.0" layoutY="180.0" prefWidth="300.0" promptText="URL de l'image" />
+
+                        <TextArea fx:id="descriptionArea" layoutX="14.0" layoutY="220.0" prefHeight="100.0" prefWidth="300.0" promptText="Description" />
+
+                        <HBox layoutX="14.0" layoutY="340.0" spacing="10.0">
+                            <children>
+                                <Button onAction="#handleAddAttraction" prefWidth="90.0" text="Ajouter" />
+                                <Button onAction="#handleUpdateAttraction" prefWidth="110.0" text="Mettre à jour" />
+                                <Button onAction="#handleDeleteAttraction" prefWidth="90.0" text="Supprimer" />
+                            </children>
+                        </HBox>
+
+                    </children>
+                </AnchorPane>
+
+                <!-- Tableau à droite -->
+                <AnchorPane>
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Liste des attractions">
+                            <font><Font size="18.0" /></font>
+                            <textFill><Color red="0.2" green="0.2" blue="0.6" /></textFill>
+                        </Label>
+
+                        <TableView fx:id="attractionTable" layoutX="14.0" layoutY="50.0" prefHeight="500.0" prefWidth="500.0">
+                            <columns>
+                                <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                                <TableColumn fx:id="colNom" prefWidth="150.0" text="Nom" />
+                                <TableColumn fx:id="colType" prefWidth="150.0" text="Type" />
+                                <TableColumn fx:id="colPrix" prefWidth="100.0" text="Prix (€)" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+
+            </items>
+        </SplitPane>
+    </center>
+
+</BorderPane>

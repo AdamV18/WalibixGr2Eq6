@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.walibixgr2eq6.Controller.StatisticsController"
+            style="-fx-background-color: #f9f9f9;"
+            prefWidth="900"
+            prefHeight="600">
+
+    <!-- TOP : Logo, titre et bouton -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <ImageView fitHeight="50" fitWidth="50">
+                <image>
+                    <Image preserveRatio="true" url="@../../../images/logo.png" />
+                </image>
+            </ImageView>
+
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Statistiques" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="StatsRetourButton" onAction="#RetourMenu" text="Retour à l'accueil admin" />
+        </HBox>
+    </top>
+
+    <!-- CENTER : Graphiques -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20">
+
+            <!-- Camemberts -->
+            <GridPane alignment="CENTER" hgap="20" vgap="20">
+                <VBox alignment="CENTER" spacing="10">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Réservations par attraction" />
+                    <PieChart fx:id="reservationParAttraction" prefHeight="200" prefWidth="300" />
+                </VBox>
+                <VBox alignment="CENTER" spacing="10" GridPane.columnIndex="1">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Utilisateurs par tranche d'âge" />
+                    <PieChart fx:id="userParTrancheAge" prefHeight="200" prefWidth="300" />
+                </VBox>
+                <VBox alignment="CENTER" spacing="10" GridPane.columnIndex="2">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Utilisateurs par type" />
+                    <PieChart fx:id="userParTypeClient" prefHeight="200" prefWidth="300" />
+                </VBox>
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="ALWAYS" />
+                </rowConstraints>
+            </GridPane>
+
+            <!-- Graphiques en barres -->
+            <HBox alignment="CENTER" spacing="20">
+                <VBox alignment="CENTER" spacing="10">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Chiffre d'affaires par attraction" />
+                    <BarChart fx:id="revenuParAttraction" prefHeight="200" prefWidth="400">
+                        <xAxis><CategoryAxis label="Attraction" /></xAxis>
+                        <yAxis><NumberAxis label="€" /></yAxis>
+                    </BarChart>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="10">
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Chiffre d'affaires mensuel (€)" />
+                    <BarChart fx:id="chiffreTotalParMois" prefHeight="200" prefWidth="400">
+                        <xAxis><CategoryAxis label="Mois" /></xAxis>
+                        <yAxis><NumberAxis label="€" /></yAxis>
+                    </BarChart>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
