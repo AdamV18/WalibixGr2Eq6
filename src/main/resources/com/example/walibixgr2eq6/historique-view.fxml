@@ -15,9 +15,9 @@
     <top>
         <VBox spacing="10">
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
-                <ImageView fitHeight="150" fitWidth="150">
+                <ImageView fitHeight="101.0" fitWidth="155.0">
                     <image>
-                        <Image preserveRatio="true" url="@../../../images/logo.png" />
+                        <Image preserveRatio="true" url="@../../../images/logo_walibix.png" />
                     </image>
                 </ImageView>
             </HBox>

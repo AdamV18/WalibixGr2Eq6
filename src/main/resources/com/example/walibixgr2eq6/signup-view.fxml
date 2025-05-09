@@ -19,9 +19,9 @@
                 <padding>
                     <Insets bottom="0" left="10" right="0" top="0" />
                 </padding>
-                <ImageView fx:id="logoImageView" fitHeight="150" fitWidth="150" onMouseClicked="#onLogoClicked">
+                <ImageView fx:id="logoImageView" fitHeight="101.0" fitWidth="155.0" onMouseClicked="#onLogoClicked">
                     <image>
-                        <Image preserveRatio="true" url="@../../../images/logo.png" />
+                        <Image preserveRatio="true" url="@../../../images/logo_walibix.png" />
                     </image>
                 </ImageView>
 

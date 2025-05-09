@@ -19,9 +19,9 @@
                 <padding>
                     <Insets top="0" left="10" right="0" bottom="0"/>
                 </padding>
-                <ImageView fitHeight="150" fitWidth="150">
+                <ImageView fitHeight="101.0" fitWidth="155.0">
                     <image>
-                        <Image url="@../../../images/logo.png" preserveRatio="true"/>
+                        <Image url="@../../../images/logo_walibix.png" preserveRatio="true"/>
                     </image>
                 </ImageView>
             </HBox>

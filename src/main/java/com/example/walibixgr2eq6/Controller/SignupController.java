@@ -133,7 +133,7 @@ public class SignupController implements Initializable {
     @FXML
     private void onLogoClicked(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/client-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/start-view.fxml"));
             Scene scene = new Scene(loader.load(), 900, 600);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

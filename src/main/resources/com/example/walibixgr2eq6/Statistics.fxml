@@ -15,9 +15,9 @@
     <!-- TOP : Logo, titre et bouton -->
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <ImageView fitHeight="50" fitWidth="50">
+            <ImageView  fitHeight="101.0" fitWidth="155.0">
                 <image>
-                    <Image preserveRatio="true" url="@../../../images/logo.png" />
+                    <Image preserveRatio="true" url="@../../../images/logo_walibix.png" />
                 </image>
             </ImageView>
 
