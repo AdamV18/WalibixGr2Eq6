@@ -52,6 +52,9 @@ public class ListeAttractionController {
         var attractions = daoAttraction.getAllAttractions();
 
         for (Attraction attraction : attractions) {
+            if ("Attraction Supprimé".equals(attraction.getNom())) {
+                continue;
+            }
             String item = attraction.getNom() + " - " + attraction.getTypeAttrac();
             comboBox.getItems().add(item);
         }
