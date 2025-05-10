@@ -2,7 +2,7 @@ module com.example.walibixgr2eq6 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires java.desktop;
+    //requires java.desktop;
 
 
     opens com.example.walibixgr2eq6 to javafx.fxml;
