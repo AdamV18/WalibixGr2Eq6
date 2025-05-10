@@ -5,15 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
             fx:controller="com.example.walibixgr2eq6.Controller.FinReservationController"
             xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <ImageView fx:id="logo"  fitHeight="101.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_LEFT">
-            <image>
-                <Image url="@../../../images/logo_walibix.png" />
-            </image>
-        </ImageView>
+        <StackPane>
+            <HBox alignment="TOP_LEFT">
+                <padding>
+                    <Insets top="0" left="10" right="0" bottom="0"/>
+                </padding>
+                <ImageView fitHeight="101.0" fitWidth="155.0">
+                    <image>
+                        <Image url="@../../../images/logo_walibix.png" preserveRatio="true"/>
+                    </image>
+                </ImageView>
+            </HBox>
+            <Label text="Réservation terminée !"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        </StackPane>
     </top>
     <center>
         <VBox alignment="CENTER" spacing="30">

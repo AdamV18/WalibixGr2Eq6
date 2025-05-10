@@ -4,10 +4,12 @@ import com.example.walibixgr2eq6.Dao.*;
 import com.example.walibixgr2eq6.Model.User;
 import com.example.walibixgr2eq6.Session;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
 import javafx.scene.control.CheckBox;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -62,6 +64,19 @@ public class LoginController {
             passwordField.setManaged(false);
             passwordVisibleField.setVisible(true);
             passwordVisibleField.setManaged(true);
+        }
+    }
+
+    @FXML
+    private void onLogoClicked(MouseEvent event) { //recup code julien pour faire le retour à l'accueil en appuyant sur le logo
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/client-view.fxml"));
+            Scene scene = new Scene(loader.load(), 900, 600);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
