@@ -45,6 +45,7 @@
             </ComboBox>
 
             <Button text="Valider" onAction="#valider"/>
+            <Label fx:id="messageErreur" text="Veuillez sélectionner une attraction" textFill="red" visible="false" />
          </children>
       </VBox>
    </center>

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -26,6 +27,9 @@ public class ListeAttractionController {
 
     @FXML
     private Button validerButton;
+
+    @FXML
+    private Label messageErreur;
 
     private DAOAttraction daoAttraction;
 
@@ -50,6 +54,7 @@ public class ListeAttractionController {
     public void initialize() {
         // Récupère toutes les attractions depuis la base de données
         var attractions = daoAttraction.getAllAttractions();
+        messageErreur.setVisible(false);
 
         for (Attraction attraction : attractions) {
             if ("Attraction Supprimé".equals(attraction.getNom())) {
@@ -63,6 +68,12 @@ public class ListeAttractionController {
     @FXML
     private void valider(ActionEvent event) throws SQLException { //si on clique sur le bouton valider :
         String choix = comboBox.getValue();
+
+        if (choix == null){
+            messageErreur.setVisible(true);
+            return;
+        }
+
         if (choix != null && !choix.isEmpty()) { //verifie qu'une attraction est choisie
             String nomAttraction = choix.split(" - ")[0]; // recupère le nom de l'attraction avant le - dans la combobox
             // recup nom attraction

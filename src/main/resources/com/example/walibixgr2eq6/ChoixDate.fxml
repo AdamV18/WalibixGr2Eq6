@@ -15,6 +15,7 @@
         <VBox alignment="CENTER" spacing="30">
             <DatePicker fx:id="choixDate" prefHeight="30" prefWidth="300" promptText="Choisissez le jour" BorderPane.alignment="CENTER" />
             <Button fx:id="validerJour" mnemonicParsing="false" onAction="#confirmerDate" text="Valider" />
+            <Label fx:id="messageErreur" text="Veuillez sélectionner une date" textFill="red" visible="false" />
         </VBox>
     </center>
    <top>

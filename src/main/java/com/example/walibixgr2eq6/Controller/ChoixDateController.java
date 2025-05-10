@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -27,6 +28,8 @@ public class ChoixDateController {
     private DatePicker choixDate;
     @FXML
     private Button validerJour;
+    @FXML
+    private Label messageErreur;
 
     private Reservation reservation = new Reservation();
     private DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
@@ -34,7 +37,7 @@ public class ChoixDateController {
     @FXML
     private void initialize() {
         //choixDate.setValue(LocalDate.now());
-        validerJour.setDisable(true);
+        messageErreur.setVisible(false);
         choixDate.setDayCellFactory(choixDate->new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -44,12 +47,17 @@ public class ChoixDateController {
                 }
             }
         });
-        validerJour.disableProperty().bind(choixDate.valueProperty().isNull());
     }
 
     @FXML
     private void confirmerDate(ActionEvent event) throws IOException {
         LocalDate dateChoisie = choixDate.getValue();
+
+        if (dateChoisie == null){
+            messageErreur.setVisible(true);
+            return;
+        }
+
         reservation.setDate(dateChoisie);
         System.out.println("Date choisie : " + dateChoisie);
 

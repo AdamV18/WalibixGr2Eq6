@@ -62,6 +62,7 @@
 
             <HBox alignment="CENTER" spacing="10.0">
                <Button fx:id="boutonValider" onAction="#valider" text="Valider" />
+                <Label fx:id="messageErreur" text="Veuillez sélectionner un créneau" textFill="red" visible="false" />
             </HBox>
          </children>
       </VBox>

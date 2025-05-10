@@ -54,6 +54,9 @@ public class DetailsCreneauxAttractionController {
     @FXML
     private Button boutonRetour;
 
+    @FXML
+    private Label messageErreur;
+
     private DAOAttraction daoAttraction;
     private String attractionNom;
     private Reservation reservation;
@@ -74,6 +77,7 @@ public class DetailsCreneauxAttractionController {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }
     }
+
     public void setAttractionNom(String nom) throws SQLException{ //pour recup le nom de l'attraction et ses infos, à voir pour utiliser la méthode d'ines
         this.attractionNom = nom;
         detailsAttraction();
@@ -81,6 +85,7 @@ public class DetailsCreneauxAttractionController {
 
     private void detailsAttraction() throws SQLException { //mettre les détails de l'attraction sur la page
         Attraction attraction = daoAttraction.getAttractionNom(attractionNom);
+        messageErreur.setVisible(false);
 
         if (attraction != null) {
             nomLabel.setText(attraction.getNom());
@@ -146,6 +151,11 @@ public class DetailsCreneauxAttractionController {
     @FXML
     private void valider() { //gère le bouton valider
         String choix = creneauxComboBox.getValue();
+
+        if (choix == null){
+            messageErreur.setVisible(true);
+            return;
+        }
 
         if (choix != null && !choix.isEmpty()) { //verif si un creneau est choisi
             String heure = choix.split(" - ")[0];
