@@ -41,11 +41,12 @@ public class ConfirmationReservationController {
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
-            reservation.setUserId(1);
+            //reservation.setUserId(1);
             System.out.println("Réservation en cours : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
             System.out.println("Id du client recupéré : " +Session.getCurrentUserId());
-            System.out.println("Attraction récupérée : " +reservation.getAttractionId());
+            System.out.println("Attraction récupérée (ID) : " +reservation.getAttractionId());
+            System.out.println("Attraction récupérée (Nom) : " +reservation.getAttractionNom());
             System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
             System.out.println("Prix après réduc (si applicable) : " +reservation.getPrixAvecReduc());
             System.out.println("Créneau récupéré : " +reservation.getHeure());
@@ -73,6 +74,9 @@ public class ConfirmationReservationController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/FinReservation.fxml")); //pour l'instant on met cette page car on n'a pas acces à l'acceuil
                 Parent root = loader.load();
+
+                FinReservationController controller = loader.getController();
+                controller.setReservation(reservation);
 
                 Stage stage = (Stage) progressBar.getScene().getWindow();
                 stage.setScene(new Scene(root, 900, 600));

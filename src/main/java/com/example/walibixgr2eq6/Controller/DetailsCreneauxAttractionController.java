@@ -69,7 +69,7 @@ public class DetailsCreneauxAttractionController {
             System.out.println("Détails créneaux : \n");
             System.out.println("Date récupérée : " + reservation.getDate());
             System.out.println("Id du client recupéré : " +Session.getCurrentUserId());
-            System.out.println("Attraction récupérée : " +reservation.getAttractionId());
+            System.out.println("Attraction récupérée : " +reservation.getAttractionId() + reservation.getAttractionNom());
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }

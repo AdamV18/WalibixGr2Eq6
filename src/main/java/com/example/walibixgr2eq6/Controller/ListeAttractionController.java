@@ -67,6 +67,7 @@ public class ListeAttractionController {
             // recup id attraction
             int idAttraction = attraction.getAttractionId();
             reservation.setAttractionId(idAttraction);
+            reservation.setAttractionNom(nomAttraction);
             System.out.println("Attraction choisie : " + nomAttraction + " - " + idAttraction);
             // passage fenetre suivante
             try {

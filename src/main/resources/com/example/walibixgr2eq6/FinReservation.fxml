@@ -28,11 +28,13 @@
     <center>
         <VBox alignment="CENTER" spacing="30">
             <children>
-                <Label fx:id="texteFinReservation" alignment="CENTER" text="Réservation finie !">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
-                </Label>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Résumé de la réservation :" />
+                <Label fx:id="labelAttraction" style="-fx-font-size: 18px;" text="Attraction" />
+                <Label fx:id="labelDate" style="-fx-font-size: 18px;" text="Date" />
+                <Label fx:id="labelCreneau" style="-fx-font-size: 18px;" text="Heure" />
+                <Label fx:id="labelPrixReduc" style="-fx-font-size: 18px;" text="Prix payé"/>
+
+
                 <Button fx:id="boutonRetourAccueil" mnemonicParsing="false" text="Retour espace client" onAction="#retourAccueil" />
             </children>
         </VBox>
