@@ -94,8 +94,10 @@ public class DetailsCreneauxAttractionController {
             UserDao userDao = new UserDao(DaoFactory.getInstance("walibix", "root", ""));
             User user = userDao.findById(userId);
             OffreReduction offreReduction = null;
-            if (user != null && user.getOffreReducId() !=null) {
-                offreReduction = OffreReductionDao.findById(user.getOffreReducId());
+            if (user != null && user.getDateNaissance() !=null) {
+                if (!"Invite".equals(user.getTypeClient()) && user.getOffreReducId() != null) {
+                    offreReduction = OffreReductionDao.findById(user.getOffreReducId());
+                }
             }
             daoAttraction.calculReduction(reservation, offreReduction);
             prixAvecReduc.setText("Prix après réduction (si applicable) : " +reservation.getPrixAvecReduc() + " €");

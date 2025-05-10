@@ -29,7 +29,7 @@ public class UserDao {
                             resultSet.getBoolean("admin"),
                             resultSet.getString("nom"),
                             resultSet.getString("prenom"),
-                            resultSet.getDate("date_naissance").toLocalDate(),
+                            resultSet.getObject("date_naissance", LocalDate.class),
                             resultSet.getString("type_client"),
                             resultSet.getObject("offre_reduc_id") != null ? resultSet.getInt("offre_reduc_id") : null
                     );
