@@ -106,7 +106,7 @@ public class UserDao {
                         rs.getBoolean("admin"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
-                        rs.getDate("date_naissance").toLocalDate(),
+                        rs.getObject("date_naissance", LocalDate.class),
                         rs.getString("type_client"),
                         rs.getObject("offre_reduc_id") != null ? rs.getInt("offre_reduc_id") : null
                 );
