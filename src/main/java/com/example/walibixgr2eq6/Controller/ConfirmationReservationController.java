@@ -47,6 +47,7 @@ public class ConfirmationReservationController {
             System.out.println("Id du client recupéré : " +Session.getCurrentUserId());
             System.out.println("Attraction récupérée : " +reservation.getAttractionId());
             System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
+            System.out.println("Prix après réduc (si applicable) : " +reservation.getPrixAvecReduc());
             System.out.println("Créneau récupéré : " +reservation.getHeure());
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");

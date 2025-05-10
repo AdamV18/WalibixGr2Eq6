@@ -15,6 +15,32 @@ public class UserDao {
         this.daoFactory = daoFactory;
     }
 
+    public User findById(int userId) {
+        String sql = "SELECT * FROM user WHERE user_id = ?";
+        try (Connection connection = daoFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new User(
+                            resultSet.getInt("user_id"),
+                            resultSet.getString("email"),
+                            resultSet.getString("mot_de_passe"),
+                            resultSet.getBoolean("admin"),
+                            resultSet.getString("nom"),
+                            resultSet.getString("prenom"),
+                            resultSet.getDate("date_naissance").toLocalDate(),
+                            resultSet.getString("type_client"),
+                            resultSet.getObject("offre_reduc_id") != null ? resultSet.getInt("offre_reduc_id") : null
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public User checkLogin(String email, String motDePasse) {
         User user = null;

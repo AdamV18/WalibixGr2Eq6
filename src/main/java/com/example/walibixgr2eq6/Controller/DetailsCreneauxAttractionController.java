@@ -1,9 +1,10 @@
 package com.example.walibixgr2eq6.Controller;
 
-import com.example.walibixgr2eq6.Dao.DAOAttraction;
-import com.example.walibixgr2eq6.Dao.DaoFactory;
+import com.example.walibixgr2eq6.Dao.*;
 import com.example.walibixgr2eq6.Model.Attraction;
+import com.example.walibixgr2eq6.Model.OffreReduction;
 import com.example.walibixgr2eq6.Model.Reservation;
+import com.example.walibixgr2eq6.Model.User;
 import com.example.walibixgr2eq6.Session;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalTime;
 
 public class DetailsCreneauxAttractionController {
@@ -33,6 +35,9 @@ public class DetailsCreneauxAttractionController {
 
     @FXML
     private Label prixBase;
+
+    @FXML
+    private Label prixAvecReduc;
 
     @FXML
     private Label typeAttraction;
@@ -69,38 +74,53 @@ public class DetailsCreneauxAttractionController {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }
     }
-    public void setAttractionNom(String nom) { //pour recup le nom de l'attraction et ses infos, à voir pour utiliser la méthode d'ines
+    public void setAttractionNom(String nom) throws SQLException{ //pour recup le nom de l'attraction et ses infos, à voir pour utiliser la méthode d'ines
         this.attractionNom = nom;
         detailsAttraction();
     }
 
-    private void detailsAttraction() { //mettre les détails de l'attraction sur la page
+    private void detailsAttraction() throws SQLException { //mettre les détails de l'attraction sur la page
         Attraction attraction = daoAttraction.getAttractionNom(attractionNom);
 
         if (attraction != null) {
             nomLabel.setText(attraction.getNom());
             descriptionAttraction.setText(attraction.getDescription());
             typeAttraction.setText(attraction.getTypeAttrac());
-            prixBase.setText(attraction.getPrixBase() + " €");
+            prixBase.setText("Prix avant réduction : " +attraction.getPrixBase() + " €");
             reservation.setPrixTotal(attraction.getPrixBase());
             System.out.println("Prix avant réduc : " +reservation.getPrixTotal());
 
-            if (attraction.getImage() != null) { //recup l'image associée à l'attraction
-                Image image = new Image(getClass().getResourceAsStream("/images/" + attraction.getImage()));
-                imageView.setImage(image);
+            int userId = Session.getCurrentUserId();
+            UserDao userDao = new UserDao(DaoFactory.getInstance("walibix", "root", ""));
+            User user = userDao.findById(userId);
+            OffreReduction offreReduction = null;
+            if (user != null && user.getOffreReducId() !=null) {
+                offreReduction = OffreReductionDao.findById(user.getOffreReducId());
             }
+            daoAttraction.calculReduction(reservation, offreReduction);
+            prixAvecReduc.setText("Prix après réduction (si applicable) : " +reservation.getPrixAvecReduc() + " €");
+            reservation.setPrixTotal(reservation.getPrixAvecReduc());
+            System.out.println("Prix après réduc (si applicable) : " +reservation.getPrixAvecReduc());
+        }
 
-            creneauxComboBox.setItems(FXCollections.observableArrayList( //pouur remplir la combobox avec les différents créneaux possibles
-                    "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00",
-                    "12:00 - 12:30", "12:30 - 13:00", "13:00 - 13:30", "13:30 - 14:00",
-                    "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00",
-                    "16:00 - 16:30", "16:30 - 17:00", "17:00 - 17:30", "17:30 - 18:00",
-                    "18:00 - 18:30", "18:30 - 19:00"
-            ));
+
+        if (attraction.getImage() != null) { //recup l'image associée à l'attraction
+            Image image = new Image(getClass().getResourceAsStream("/images/" + attraction.getImage()));
+            imageView.setImage(image);
         } else {
             nomLabel.setText("L'attraction n'a pas été trouvée");
         }
-    }
+
+        creneauxComboBox.setItems(FXCollections.observableArrayList( //pouur remplir la combobox avec les différents créneaux possibles
+                "10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00",
+                "12:00 - 12:30", "12:30 - 13:00", "13:00 - 13:30", "13:30 - 14:00",
+                "14:00 - 14:30", "14:30 - 15:00", "15:00 - 15:30", "15:30 - 16:00",
+                "16:00 - 16:30", "16:30 - 17:00", "17:00 - 17:30", "17:30 - 18:00",
+                "18:00 - 18:30", "18:30 - 19:00"
+        ));
+
+        }
+
 
     @FXML
     private void retour() { //gère le bouton retour

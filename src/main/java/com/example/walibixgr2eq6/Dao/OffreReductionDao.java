@@ -10,6 +10,29 @@ import java.util.List;
 public class OffreReductionDao {
     private static DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    public static OffreReduction findById(int offreId) {
+        String sql = "SELECT * FROM OffreReduction WHERE offre_reduc_id = ?";
+        try (Connection connection = daoFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, offreId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new OffreReduction(
+                            resultSet.getInt("offre_reduc_id"),
+                            resultSet.getString("nom"),
+                            resultSet.getString("description"),
+                            resultSet.getDouble("pourcentage"),
+                            resultSet.getInt("condition_age_min"),
+                            resultSet.getInt("condition_age_max")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static List<OffreReduction> getAllOffres() {
         List<OffreReduction> list = new ArrayList<>();
         String sql = "SELECT * FROM OffreReduction";

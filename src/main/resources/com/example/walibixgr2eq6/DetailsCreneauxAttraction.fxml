@@ -55,6 +55,7 @@
             <Label fx:id="typeAttraction" style="-fx-font-size: 14px;" text="Type de l'attraction" />
             <Text fx:id="descriptionAttraction" style="-fx-font-size: 18px;" text="Description ici" textAlignment="CENTER" wrappingWidth="400.0" />
             <Label fx:id="prixBase" style="-fx-font-size: 16px;" text="Prix : €" />
+            <Label fx:id="prixAvecReduc" style="-fx-font-size: 16px;" text="Prix : €" />
 
             <Label style="-fx-font-size: 18px;" text="Choisissez votre créneau :" />
             <ComboBox fx:id="creneauxComboBox" prefWidth="200.0" />

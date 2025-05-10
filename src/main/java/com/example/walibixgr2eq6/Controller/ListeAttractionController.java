@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ListeAttractionController {
 
@@ -57,7 +58,7 @@ public class ListeAttractionController {
     }
 
     @FXML
-    private void valider(ActionEvent event) { //si on clique sur le bouton valider :
+    private void valider(ActionEvent event) throws SQLException { //si on clique sur le bouton valider :
         String choix = comboBox.getValue();
         if (choix != null && !choix.isEmpty()) { //verifie qu'une attraction est choisie
             String nomAttraction = choix.split(" - ")[0]; // recupère le nom de l'attraction avant le - dans la combobox

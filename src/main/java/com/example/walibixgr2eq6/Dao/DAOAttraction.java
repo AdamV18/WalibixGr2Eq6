@@ -1,6 +1,7 @@
 package com.example.walibixgr2eq6.Dao;
 
 import com.example.walibixgr2eq6.Model.Attraction;
+import com.example.walibixgr2eq6.Model.OffreReduction;
 import com.example.walibixgr2eq6.Model.Reservation;
 import com.example.walibixgr2eq6.Session;
 
@@ -73,6 +74,14 @@ public class DAOAttraction {
         }
 
         return attractions;
+    }
+
+    public void calculReduction(Reservation reservation, OffreReduction offreReduc) {
+        double prixTotal = reservation.getPrixTotal();
+        double pourcentage = (offreReduc != null) ? offreReduc.getPourcentage() : 0.0;
+        double montantReduc = prixTotal * pourcentage/100.0;
+        double prixAvecReduc = prixTotal - montantReduc;
+        reservation.setPrixAvecReduc(prixAvecReduc);
     }
 
     public void ajouter(Reservation reservation) {
