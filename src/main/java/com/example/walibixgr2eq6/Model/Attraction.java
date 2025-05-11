@@ -1,5 +1,9 @@
 package com.example.walibixgr2eq6.Model;
 
+/**
+ * represente une attraction avec son id, son nom
+ * son type, sa description, son prix de base et le chemin vers son image
+ */
 public class Attraction {
     private int attractionId;
     private String nom;
@@ -8,6 +12,15 @@ public class Attraction {
     private double prixBase;
     private String image;
 
+    /**
+     * constructeur de l'attraction
+     * @param attractionId
+     * @param nom
+     * @param typeAttrac
+     * @param description
+     * @param prixBase
+     * @param image
+     */
     public Attraction(int attractionId, String nom, String typeAttrac, String description, double prixBase, String image) {
         this.attractionId = attractionId;
         this.nom = nom;
@@ -35,6 +48,10 @@ public class Attraction {
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
 
+    /**
+     * retourne une representation textuelle de l'attraction  avec le nom et le prix de base
+     * @return
+     */
     @Override
     public String toString() {
         return nom + " (" + prixBase + "€)";

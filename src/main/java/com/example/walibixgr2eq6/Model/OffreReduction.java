@@ -1,5 +1,9 @@
 package com.example.walibixgr2eq6.Model;
 
+/**
+ * represente une offre de réduction avec son id, son nom, sa description,
+ * son pourcentage, sa condition d'age min et max
+ */
 public class OffreReduction {
     private int offreReducId;
     private String nom;
@@ -8,6 +12,15 @@ public class OffreReduction {
     private int conditionAgeMin;
     private int conditionAgeMax;
 
+    /**
+     * constructeur de l'offre de réduction
+     * @param offreReducId
+     * @param nom
+     * @param description
+     * @param pourcentage
+     * @param conditionAgeMin
+     * @param conditionAgeMax
+     */
     public OffreReduction(int offreReducId, String nom, String description, double pourcentage, int conditionAgeMin, int conditionAgeMax) {
         this.offreReducId = offreReducId;
         this.nom = nom;
@@ -35,7 +48,10 @@ public class OffreReduction {
     public int getConditionAgeMax() { return conditionAgeMax; }
     public void setConditionAgeMax(int conditionAgeMax) { this.conditionAgeMax = conditionAgeMax; }
 
-
+    /**
+     * retourne une representation textuelle de l'offre de réduction  avec le nom et le pourcentage définit
+     * @return
+     */
     @Override
     public String toString() {
         return nom + " (" + pourcentage + "%)";
