@@ -4,13 +4,11 @@
 
 **Walibix** est une application de gestion de réservations pour un parc d'attractions. Elle permet aux clients de consulter les attractions disponibles, d’effectuer des réservations avec ou sans réductions, et aux administrateurs de gérer les attractions, les clients, les offres de réduction et d'analyser les ventes via des statistiques graphiques.
 
----
 
 ## 🏗️ Architecture
 
 L’application suit une architecture MVC avec accès aux données via DAO/JDBC, s'appuie sur MySQL, et propose une interface graphique en JavaFX.
 
----
 
 ## 🎮 Fonctionnalités
 
@@ -26,7 +24,6 @@ L’application suit une architecture MVC avec accès aux données via DAO/JDBC,
 - Consulter les statistiques de fréquentation et de ventes
 - Visualiser les clients les plus actifs
 
----
 
 ## ⚙️ Installation
 
@@ -36,7 +33,6 @@ L’application suit une architecture MVC avec accès aux données via DAO/JDBC,
 - Un IDE comme IntelliJ IDEA
 - Bibliothèques : mysql-connector-java, JavaFX
 
----
 
 ## 🧑‍💻 Équipe de développement - GR2 Eq6
 - Amélie **DUPOUY**
