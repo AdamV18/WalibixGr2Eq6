@@ -4,8 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * La DAO Factory (DaoFactory.java) permet d'initialiser le DAO en chargeant notamment les drivers nécessaires
- * (ici un driver JDBC MySQL) et se connecte à la base de données. La Factory peut fournir plusieurs DAO
+ * DAO permetant d'obtenir des connexion JDBC vers la bdd MySQL
  */
 public class DaoFactory {
     /**
@@ -15,7 +14,12 @@ public class DaoFactory {
     private String username;
     private String password;
 
-    // constructeur
+    /**
+     * initialise la factory avec paramètres de connexion
+     * @param url
+     * @param username
+     * @param password
+     */
     public DaoFactory(String url, String username, String password) {
         DaoFactory.url = url;
         this.username = username;
@@ -23,7 +27,7 @@ public class DaoFactory {
     }
 
     /**
-     * Méthode qui retourne 1 objet de DaoFactory
+     * retourne un objet pour se connecter a la bdd specifiée
      * @param : url, username et password de la base de données
      * @return : objet de la classe DaoFactoru
      */
@@ -40,7 +44,7 @@ public class DaoFactory {
     }
 
     /**
-     * Méthode qui retourne le driver de base de données approprié
+     * ouvre une nouvelle connexion JDBC vers la bdd configurée dans la factory
      * @return : le driver approprié
      * @throws SQLException
      */
@@ -49,7 +53,7 @@ public class DaoFactory {
     }
 
     /**
-     *     Fermer la connexion à la base de données
+     * Fermer la connexion à la bdd
      */
     public void disconnect() {
         Connection connexion = null;

@@ -11,15 +11,27 @@ import java.util.List;
 import java.sql.Date;
 import java.sql.Time;
 
-
+/**
+ * DAO pour lister, récupérer le nom des attractions
+ * Dao présent dans la branche reservationAttraction
+ */
 public class DAOAttraction {
 
     private DaoFactory daoFactory; //recup DaoFactory pour la bdd
 
+    /**
+     * creation instance DAOAttraction avec factory
+     * @param daoFactory
+     */
     public DAOAttraction(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
+    /**
+     * recupère toutes attractions de la bdd grâce à leur nom
+     * @param nom
+     * @return
+     */
     public Attraction getAttractionNom(String nom) { //récupérer les attractions par le nom
         String sql = "SELECT * FROM attraction WHERE nom = ?";
 
@@ -48,7 +60,10 @@ public class DAOAttraction {
         return null;
     }
 
-    // permet de creer la liste pour affichage grace a bdd et pas direct dans la combobox
+    /**
+     * permet de creer la liste pour affichage grâce a bdd et pas direct dans la combobox
+     * @return
+     */
     public List<Attraction> getAllAttractions() {
         List<Attraction> attractions = new ArrayList<>();
 
@@ -76,35 +91,7 @@ public class DAOAttraction {
         return attractions;
     }
 
-    public void calculReduction(Reservation reservation, OffreReduction offreReduc) {
-        double prixTotal = reservation.getPrixTotal();
-        double pourcentage = (offreReduc != null) ? offreReduc.getPourcentage() : 0.0;
-        double montantReduc = prixTotal * pourcentage/100.0;
-        double prixAvecReduc = prixTotal - montantReduc;
-        reservation.setPrixAvecReduc(prixAvecReduc);
-    }
 
-    public void ajouter(Reservation reservation) {
-        try {
-            // connexion
-            Connection connexion = daoFactory.getConnection();
-
-            // Exécution de la requête INSERT INTO de l'objet product en paramètre
-            PreparedStatement preparedStatement = connexion.prepareStatement(
-                    "INSERT INTO reservation(reservation_id, date, heure, user_id, attraction_id, prix_total,prix_avec_reduc) VALUES (?,?,?,?,?,?,?)");
-            preparedStatement.setInt(1, reservation.getReservationId());
-            preparedStatement.setDate(2, Date.valueOf(reservation.getDate()));
-            preparedStatement.setTime(3, Time.valueOf(reservation.getHeure()));
-            preparedStatement.setInt(4, Session.getCurrentUserId());
-            preparedStatement.setInt(5, reservation.getAttractionId());
-            preparedStatement.setDouble(6, reservation.getPrixTotal());
-            preparedStatement.setDouble(7, reservation.getPrixAvecReduc());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Ajout de la réservation impossible");
-        }
-    }
 
 }
 

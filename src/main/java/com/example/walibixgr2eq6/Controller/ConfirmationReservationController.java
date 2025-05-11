@@ -2,7 +2,7 @@ package com.example.walibixgr2eq6.Controller;
 
 import com.example.walibixgr2eq6.Dao.DaoFactory;
 import com.example.walibixgr2eq6.Model.Reservation;
-import com.example.walibixgr2eq6.Dao.DAOAttraction;
+import com.example.walibixgr2eq6.Dao.ReservationDao;
 import com.example.walibixgr2eq6.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * controleur de la vue de confirmationReservation
@@ -39,17 +41,18 @@ public class ConfirmationReservationController {
         startProgressAnimation();
     }
 
-    private DAOAttraction daoAttraction;
+    private ReservationDao reservationDao;
 
     private Reservation reservation;
 
     /**
      * constructeur par défaut
-     * initialise la connexion à la bdd et création du DAOAttraction
+     * initialise la connexion à la bdd et création du ReservationDao
      */
-    public ConfirmationReservationController() { //connection à la bdd
+    public ConfirmationReservationController() throws SQLException { //connection à la bdd
         DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
-        this.daoAttraction = new DAOAttraction(daoFactory);
+        Connection connexion = daoFactory.getConnection();
+        this.reservationDao = new ReservationDao(connexion);
     }
 
     /**
@@ -73,7 +76,7 @@ public class ConfirmationReservationController {
         } else {
             System.out.println("Erreur : Reservation nulle ou date nulle");
         }
-        daoAttraction.ajouter(reservation);
+        reservationDao.ajouter(reservation);
     }
 
     /**

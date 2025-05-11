@@ -18,14 +18,6 @@ public class ClientController {
     private Stage stage;
 
     /**
-     * définition
-     * @param stage
-     */
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    /**
      * action délenchée quand il y a un clic sur le bouton "Nouvelle réservation"
      * redirection vers ChoixDate.fxml
      * @param event

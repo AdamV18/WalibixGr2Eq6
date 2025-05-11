@@ -5,6 +5,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO pour lister, ajouter, modifier et supprimer des attractions
+ * Dao présent dans la branche connexion
+ */
 public class AttractionDao {
     private static DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
@@ -12,8 +16,10 @@ public class AttractionDao {
         this.daoFactory = daoFactory;
     }*/
 
-
-
+    /**
+     * recupère toutes attractions de la bdd
+     * @return
+     */
     public static List<Attraction> getAllAttractions() {
         List<Attraction> list = new ArrayList<>();
         String sql = "SELECT * FROM Attraction";
@@ -40,6 +46,10 @@ public class AttractionDao {
         return list;
     }
 
+    /**
+     * permet de mettre à jour les attractions de la bdd
+     * @param attraction
+     */
     public static void updateAttraction(Attraction attraction) {
         String sql = "UPDATE Attraction SET nom=?, type_attrac=?, description=?, prix_base=?, image=? WHERE attraction_id=?";
 
@@ -61,6 +71,11 @@ public class AttractionDao {
     }
 
 
+    /**
+     * permet d'ajouter une nouvelle attraction dans la bdd
+     * l'id utilisé est auto incrementé dans la bdd
+     * @param attraction
+     */
     public static void addAttraction(Attraction attraction) {
         String sql = "INSERT INTO Attraction (nom, type_attrac, description, prix_base, image) VALUES (?, ?, ?, ?, ?)";
 
@@ -80,6 +95,10 @@ public class AttractionDao {
         }
     }
 
+    /**
+     * permet de supprimer une attraction de la bdd
+     * @param id
+     */
     public static void deleteAttraction(int id) {
         String sql = "DELETE FROM Attraction WHERE attraction_id=?";
 
