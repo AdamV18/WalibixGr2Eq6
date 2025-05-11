@@ -7,14 +7,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO pour gérer les opérations liées aux utilisateurs
+ * permet de récupérer, modifier, supprimer et vérifier les utilisateurs dans la bdd
+ */
 public class UserDao {
     private DaoFactory daoFactory;
 
-
+    /**
+     * constructeur du user
+     * @param daoFactory
+     */
     public UserDao(DaoFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
+    /**
+     * recherche un utilisateur par son id
+     * @param userId
+     * @return
+     */
     public User findById(int userId) {
         String sql = "SELECT * FROM user WHERE user_id = ?";
         try (Connection connection = daoFactory.getConnection();
@@ -42,6 +54,12 @@ public class UserDao {
     }
 
 
+    /**
+     * vérifie les infos de connexion d'un utilisateur
+     * @param email
+     * @param motDePasse
+     * @return
+     */
     public User checkLogin(String email, String motDePasse) {
         User user = null;
 
@@ -76,6 +94,11 @@ public class UserDao {
         return user;
     }
 
+    /**
+     * vérifie, par le mail, si l'utilisateur existe déjà
+     * @param email
+     * @return
+     */
     public boolean userExists(String email) {
         String sql = "SELECT 1 FROM user WHERE email = ?";
         try (Connection conn = daoFactory.getConnection();
@@ -90,6 +113,10 @@ public class UserDao {
         }
     }
 
+    /**
+     * récupère tous les utilisateurs actifs (pas admin, ni archivé)
+     * @return
+     */
     public List<User> getAllActiveUsers() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM user WHERE type_client NOT IN ('Admin', 'Archive')";
@@ -121,6 +148,10 @@ public class UserDao {
     }
 
 
+    /**
+     * met à jour les infos d'un utilisateur existant
+     * @param user
+     */
     public void updateUser(User user) {
         String sql = "UPDATE user SET email=?, nom=?, prenom=?, date_naissance=?, type_client=?, admin=? WHERE user_id=?";
 
@@ -142,6 +173,10 @@ public class UserDao {
         }
     }
 
+    /**
+     * supprime un utilisateur de la bdd à partir de son id
+     * @param userId
+     */
     public void deleteUserById(int userId) {
         String sql = "DELETE FROM user WHERE user_id = ?";
 

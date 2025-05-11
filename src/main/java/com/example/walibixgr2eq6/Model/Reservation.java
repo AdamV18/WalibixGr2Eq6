@@ -3,6 +3,10 @@ package com.example.walibixgr2eq6.Model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * représente une réservation faite par un utilisateur (pour une attraction)
+ * contient les différentes infos (de la bdd)
+ */
 public class Reservation {
     private int reservationId;
     private LocalDate date;
@@ -15,6 +19,17 @@ public class Reservation {
 
     public Reservation(){}
 
+    /**
+     * constructeur de la reservation
+     * @param reservationId
+     * @param date
+     * @param heure
+     * @param userId
+     * @param attractionId
+     * @param attractionNom
+     * @param prixTotal
+     * @param prixAvecReduc
+     */
     public Reservation(int reservationId, LocalDate date, LocalTime heure, int userId, int attractionId, String attractionNom, double prixTotal, double prixAvecReduc) {
         this.reservationId = reservationId;
         this.date = date;
@@ -50,6 +65,10 @@ public class Reservation {
     public double getPrixAvecReduc() { return prixAvecReduc; }
     public void setPrixAvecReduc(double prixAvecReduc) { this.prixAvecReduc = prixAvecReduc; }
 
+    /**
+     * retourne une représentation (texte) de la réservation
+     * @return
+     */
     @Override
     public String toString() {
         return "Réservation #" + reservationId + " - " + date + " " + heure;

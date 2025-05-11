@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO pour gérer les opérations liées aux réservations
+ */
 public class ReservationDao {
 
     private final Connection connection;
@@ -18,6 +21,11 @@ public class ReservationDao {
         this.connection = connection;
     }
 
+    /**
+     * récupère la liste des réservations d'un utilisateur donné, triée par date et heure
+     * @param userId
+     * @return
+     */
     public List<Reservation> getReservationsByUserId(int userId) {
         List<Reservation> reservations = new ArrayList<>();
         String query = "SELECT r.reservation_id, r.date, r.heure, r.user_id, r.attraction_id, " +
@@ -50,6 +58,12 @@ public class ReservationDao {
         return reservations;
     }
 
+    /**
+     * réassigne toutes les réservations liées à une attraction vers une autre attraction
+     * (en cas de remplacement ou suppression d'une attraction)
+     * @param oldAttractionId
+     * @param newAttractionId
+     */
     public static void reassignAttractionInReservations(int oldAttractionId, int newAttractionId) {
         String sql = "UPDATE Reservation SET attraction_id = ? WHERE attraction_id = ?";
 
@@ -65,6 +79,12 @@ public class ReservationDao {
         }
     }
 
+    /**
+     * réassigne toutes les réservations d'un utilisateur supprimé vers un utilisateur archivé
+     * (conserve l'historique des réservations, sans perdre les données)
+     * @param deletedUserId
+     * @param archiveUserId
+     */
     public static void reassignReservationsToArchiveUser(int deletedUserId, int archiveUserId) {
         String sql = "UPDATE reservation SET user_id = ? WHERE user_id = ?";
 
@@ -80,6 +100,11 @@ public class ReservationDao {
         }
     }
 
+    /**
+     * ajoute une nouvelle réservation dans la bdd
+     * l'id de l'utilisateur est directement récupéré depuis la session
+     * @param reservation
+     */
     public void ajouter(Reservation reservation) {
         try {
             // connexion

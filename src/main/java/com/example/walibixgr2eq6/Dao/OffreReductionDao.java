@@ -7,9 +7,19 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO pour gérer les offres de réduction
+ * fournit les méthodes ou appliquer ou pas les reduc en fonciton de l'âge des utilisateurs
+ * pour en créer ou en supprimer
+ */
 public class OffreReductionDao {
     private static DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    /**
+     * recherche une offre de réduction par son id
+     * @param offreId
+     * @return
+     */
     public static OffreReduction findById(int offreId) {
         String sql = "SELECT * FROM OffreReduction WHERE offre_reduc_id = ?";
         try (Connection connection = daoFactory.getConnection();
@@ -33,6 +43,10 @@ public class OffreReductionDao {
         return null;
     }
 
+    /**
+     * récupère toutes les réducs dispo dans la bdd
+     * @return
+     */
     public static List<OffreReduction> getAllOffres() {
         List<OffreReduction> list = new ArrayList<>();
         String sql = "SELECT * FROM OffreReduction";
@@ -59,6 +73,10 @@ public class OffreReductionDao {
         return list;
     }
 
+    /**
+     * ajoute une nouvelle reduc dans la bdd
+     * @param offre
+     */
     public static void addOffreReduc(OffreReduction offre) {
         String sql = "INSERT INTO OffreReduction (nom, description, pourcentage, condition_age_min, condition_age_max) VALUES (?, ?, ?, ?, ?)";
 
@@ -77,6 +95,10 @@ public class OffreReductionDao {
         }
     }
 
+    /**
+     * met à jour les infos d'une réduc déjà existante
+     * @param offre
+     */
     public static void updateOffreReduc(OffreReduction offre) {
         String sql = "UPDATE OffreReduction SET nom=?, description=?, pourcentage=?, condition_age_min=?, condition_age_max=? WHERE offre_reduc_id=?";
 
@@ -96,6 +118,10 @@ public class OffreReductionDao {
         }
     }
 
+    /**
+     * supprime une réduc de la bdd (par son id)
+     * @param id
+     */
     public static void deleteOffreReduc(int id) {
         String sql = "DELETE FROM OffreReduction WHERE offre_reduc_id=?";
 
@@ -109,6 +135,11 @@ public class OffreReductionDao {
         }
     }
 
+    /**
+     * détache une réduc de tous les utilisateurs qui y sont associés
+     * met à null leur "offre_reduc_id"
+     * @param offreReducId
+     */
     public static void detachOffreFromUsers(int offreReducId) {
         String sql = "UPDATE user SET offre_reduc_id = NULL WHERE offre_reduc_id = ?";
 
@@ -123,6 +154,10 @@ public class OffreReductionDao {
         }
     }
 
+    /**
+     * donne automatiquement une offre à tous les utilisateurs (non admin ou invité) en fonction de leur âge
+     * l'offre est choisi selon l'âge de l'utilisateur : jeunesse, senior, étudiant
+     */
     public static void assignOffresToUsersByAge() {
         String getUsers = """
         SELECT user_id, date_naissance
@@ -175,6 +210,11 @@ public class OffreReductionDao {
         }
     }
 
+    /**
+     * calcule l'âge d'un utilisateur à partir de sa date de naissance
+     * @param birthDate
+     * @return
+     */
     private static int calculateAge(LocalDate birthDate) {
         return Period.between(birthDate, LocalDate.now()).getYears();
     }

@@ -2,6 +2,10 @@ package com.example.walibixgr2eq6.Model;
 
 import java.time.LocalDate;
 
+/**
+ * représente un utilisateur de Walibix
+ * peut être un client, admin ou invité
+ */
 public class User {
     private int userId;
     private String email;
@@ -13,6 +17,18 @@ public class User {
     private String typeClient;
     private Integer offreReducId;
 
+    /**
+     * constructeur complet de la classe user
+     * @param userId
+     * @param email
+     * @param motDePasse
+     * @param admin
+     * @param nom
+     * @param prenom
+     * @param dateNaissance
+     * @param typeClient
+     * @param offreReducId
+     */
     public User(int userId, String email, String motDePasse, boolean admin, String nom, String prenom, LocalDate dateNaissance, String typeClient, Integer offreReducId) {
         this.userId = userId;
         this.email = email;
@@ -52,6 +68,10 @@ public class User {
     public Integer getOffreReducId() { return offreReducId; }
     public void setOffreReducId(Integer offreReducId) { this.offreReducId = offreReducId; }
 
+    /**
+     * retourne une représentation (texte) de l'utilisateur
+     * @return
+     */
     @Override
     public String toString() {
         return nom + " " + prenom + " (" + email + ")";
