@@ -1,64 +1,48 @@
-🎢 Projet JAVA : Walibix
+# 🎢 Walibix Attractions Manager
 
-Ce projet a été réalisé dans le cadre du module Projet POO Java 2025.
+## 📋 Présentation
+
+**Walibix** est une application de gestion de réservations pour un parc d'attractions. Elle permet aux clients de consulter les attractions disponibles, d’effectuer des réservations avec ou sans réductions, et aux administrateurs de gérer les attractions, les clients, les offres de réduction et d'analyser les ventes via des statistiques graphiques.
+
+---
+
+## 🏗️ Architecture
 
 L’application suit une architecture MVC avec accès aux données via DAO/JDBC, s'appuie sur MySQL, et propose une interface graphique en JavaFX.
 
-📊 Fonctionnalités principales
+---
 
-    Gestion des utilisateurs (inscription / connexion)
+## 🎮 Fonctionnalités
 
-    Réservation de billets avec calcul des prix et remises
+### Pour les Clients
+- Parcourir les attractions disponibles
+- Réserver une ou plusieurs attractions
+- Calcul automatique des remises selon l’âge
+- Consulter l’historique des réservations (membres uniquement)
 
-    Historique des réservations client
+### Pour les Administrateurs
+- Ajouter, modifier ou supprimer des attractions
+- Gérer les offres de réduction et les clients
+- Consulter les statistiques de fréquentation et de ventes
+- Visualiser les clients les plus actifs
 
-    Administration des offres, des utilisateurs et des attractions
+---
 
-    Génération de statistiques visuelles
+## ⚙️ Installation
 
+### Prérequis
+- Java JDK 23+
+- MySQL Server
+- Un IDE comme IntelliJ IDEA
+- Bibliothèques : mysql-connector-java, JavaFX
 
-ℹ️ Overview
+---
 
-Ce projet a été réalisé dans le cadre du module Projet POO Java 2025.
-L'application permet aux utilisateurs de :
-
-    parcourir les attractions disponibles,
-
-    réserver des billets pour une date donnée,
-
-    bénéficier de réductions selon leur profil (âge, fidélité),
-
-    consulter leurs historiques.
-
-Les administrateurs peuvent :
-
-    gérer les offres, utilisateurs et attractions,
-
-    consulter les statistiques des ventes et fréquentations.
-
-
-✍️ Authors
-
-    Ines HALLER
-
-    Adam VANSTON
-
-    Amélie DUPOUY
-
-    Julien PERDRIX
-
-
-⬇️ Installation
-
-Prérequis :
-
-    Java 23+
-
-    MySQL Server
-
-    IntelliJ IDEA
-
-    Bibliothèques : mysql-connector-java, JavaFX
+## 🧑‍💻 Équipe de développement - GR2 Eq6
+- Amélie **DUPOUY**
+- Inès **HALLER**
+- Adam **VANSTON**
+- Julien **PERDRIX**
 
 
 
