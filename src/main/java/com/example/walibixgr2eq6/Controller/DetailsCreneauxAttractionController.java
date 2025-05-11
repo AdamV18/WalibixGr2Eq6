@@ -139,7 +139,7 @@ public class DetailsCreneauxAttractionController {
             }
             calculReduction(reservation, offreReduction);
             prixAvecReduc.setText("Prix après réduction (si applicable) : " +reservation.getPrixAvecReduc() + " €");
-            reservation.setPrixTotal(reservation.getPrixAvecReduc());
+            reservation.setPrixAvecReduc(reservation.getPrixAvecReduc());
             System.out.println("Prix après réduc (si applicable) : " +reservation.getPrixAvecReduc());
         }
 
