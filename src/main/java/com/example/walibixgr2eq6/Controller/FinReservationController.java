@@ -11,6 +11,11 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 
+/**
+ * controleur pour l'interface FinReservation
+ * affiche le résumé d'une réservation terminée
+ * affiche un bouton de retour qui renvoie à l'accueil si on clique dessus
+ */
 public class FinReservationController {
 
     @FXML
@@ -37,6 +42,11 @@ public class FinReservationController {
     public void initialize() {
     }
 
+
+    /**
+     * gère le bouton retour
+     * redirige l'utilisateur vers l'interface client si le bouton est cliqué
+     */
     @FXML
     private void retourAccueil() {
         try { // retour sur la page de choix de l'attraction parce que pour l'instant on a pas accès à l'accueil
@@ -52,6 +62,9 @@ public class FinReservationController {
         }
     }
 
+    /**
+     * met à jour l'affichag du résumé de l'attraction avec les bonnes infos
+     */
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {

@@ -21,6 +21,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * controleur pour l'interface l'historique (des réservations)
+ * affiche les données récupérées dans la bdd dans un tableau
+ * affiche un bouton retour qui renvoie à l'interface client
+ */
 public class HistoriqueController {
 
     @FXML private TableView<Reservation> reservationTable;
@@ -32,6 +37,10 @@ public class HistoriqueController {
 
     private final ObservableList<Reservation> reservationList = FXCollections.observableArrayList();
 
+    /**
+     * initialise le tableau (TableView) avec les données de réservation de l'utilisateur connecté
+     * @throws SQLException
+     */
     @FXML
     public void initialize() throws SQLException {
         if (!Session.isLoggedIn()) {
@@ -58,6 +67,11 @@ public class HistoriqueController {
         reservationTable.setItems(reservationList);
     }
 
+    /**
+     * gère le bouton retour
+     * redirige l'utilisateur vers l'interface client
+     * @param event
+     */
     @FXML
     private void onRetourClick(ActionEvent event) {
         try {

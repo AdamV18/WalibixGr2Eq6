@@ -21,6 +21,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * controleur de l'interface statistique dans l'admin
+ * affiche des graphiques sur les réservations, CA et utilisateurs
+ */
 public class StatisticsController {
 
     @FXML
@@ -29,6 +33,9 @@ public class StatisticsController {
     //private DaoFactory daoFactory;
     private DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    /**
+     * charge les stats à afficher
+     */
     @FXML
     public void initialize() {
         loadReservationParAttraction();
@@ -39,10 +46,15 @@ public class StatisticsController {
         loadChiffreTotalParMois();
     }
 
-
+    /**
+     * graphique circulaire qui affiche le nombre de réservations par attraction
+     */
     @FXML
     private PieChart reservationParAttraction;
 
+    /**
+     * charge et affiche les données de réservation par attraction (dans un graph)
+     */
     public void loadReservationParAttraction() {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
 
@@ -71,10 +83,15 @@ public class StatisticsController {
         reservationParAttraction.setLegendVisible(false);
     }
 
-
+    /**
+     * graphique circulaire qui affiche la répartition des utilisateurs par tranche d'âge
+     */
     @FXML
     private PieChart userParTrancheAge;
 
+    /**
+     * charge et affiche les utilisateurs par tranche d'âge (dans un graph)
+     */
     public void loaduserParTrancheAge() {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
 
@@ -110,10 +127,15 @@ public class StatisticsController {
     }
 
 
-
+    /**
+     * graphique circulaire qui affiche la répartition des utilisateurs par type de client
+     */
     @FXML
     private PieChart userParTypeClient;
 
+    /**
+     * charge et affiche les utilisateurs regroupés par type de client (dans un graph)
+     */
     public void loaduserParTypeClient() {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
 
@@ -141,14 +163,15 @@ public class StatisticsController {
         userParTypeClient.setLegendVisible(false);
     }
 
-
-
-
-
-
+    /**
+     * graphique en barres qui affiche le CA généré par chaque attraction
+     */
     @FXML
     private BarChart<String, Number> revenuParAttraction;
 
+    /**
+     * charge et affiche le revenu total généré par chaque attraction (dans un graph)
+     */
     public void loadRevenuParAttraction() {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Chiffre d'affaires (€)");
@@ -180,9 +203,15 @@ public class StatisticsController {
     }
 
 
+    /**
+     * graphique en barres affichant le CA/mois
+     */
     @FXML
     private BarChart<String, Number> chiffreTotalParMois;
 
+    /**
+     * charge et affiche le CA/mois (dans un graph)
+     */
     public void loadChiffreTotalParMois() {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Chiffre d'affaires mensuel (€)");
@@ -213,6 +242,11 @@ public class StatisticsController {
     }
 
 
+    /**
+     * gère le bouton retour
+     * redirige vers l'interface admin
+     * @param event
+     */
     public void RetourMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) StatsRetourButton.getScene().getWindow();

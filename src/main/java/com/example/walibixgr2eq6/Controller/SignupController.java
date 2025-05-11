@@ -26,6 +26,12 @@ import java.time.Period;
 import java.util.ResourceBundle;
 import java.sql.Date;
 
+/**
+ * controleur de l'interface inscription
+ * permet de saisir les informations
+ * enregistre le compte dans la bdd
+ * redirige vers l'interface client
+ */
 public class SignupController implements Initializable {
 
     @FXML private TextField nomField;
@@ -41,6 +47,11 @@ public class SignupController implements Initializable {
 
     private final DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    /**
+     * initialise les éléments dans l'interface (et dans les combobox)
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int currYear = LocalDate.now().getYear();
@@ -56,6 +67,13 @@ public class SignupController implements Initializable {
                 -> updateAgeLabel());
     }
 
+    /**
+     * gère le bouton s'inscrire
+     * valide les infos et vérifie que l'utilisateur n'existe pas déjà
+     * ajoute le nouvel utilisateur à la bdd
+     * redirige vers l'interface client
+     * @param event
+     */
     @FXML
     protected void onSignupButtonClick(ActionEvent event) {
         try {
@@ -130,6 +148,11 @@ public class SignupController implements Initializable {
         }
     }
 
+    /**
+     * gère le clic sur le logo
+     * si l'utilisateur clique sur le logo, cela redirige vers l'interface de départ
+     * @param event
+     */
     @FXML
     private void onLogoClicked(MouseEvent event) {
         try {
@@ -143,6 +166,9 @@ public class SignupController implements Initializable {
         }
     }
 
+    /**
+     * affiche ou masque le mdp en fonction de si la case est cochée ou pas
+     */
     @FXML
     protected void togglePasswordVisibility() {
         boolean visible = passwordVisibleField.isVisible();
@@ -161,11 +187,19 @@ public class SignupController implements Initializable {
         }
     }
 
+    /**
+     * verifie si le format du mail est valide, sinon erreur
+     * @param email
+     * @return
+     */
     private boolean isValidEmail(String email) {
         String regex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(regex);
     }
 
+    /**
+     * met à jour l'âge calculé en fonction de la date de naissance
+     */
     private void updateAgeLabel() {
         LocalDate date = getSelectedBirthDate();
         int calculatedAge = -1;
@@ -176,6 +210,10 @@ public class SignupController implements Initializable {
         }
     }
 
+    /**
+     * récupère la date de naissance dans les combobox
+     * @return
+     */
     private LocalDate getSelectedBirthDate() {
         Integer day = dayCombo.getValue();
         Integer month = monthCombo.getValue();

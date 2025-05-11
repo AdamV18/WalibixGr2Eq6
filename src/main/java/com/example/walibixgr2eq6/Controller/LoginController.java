@@ -16,6 +16,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
 
+/**
+ * controleur de l'interface login (d'un membre ou admin)
+ * permet à un utilisateur de se connecter avec un mail et un mdp
+ * cache le mdp
+ */
 public class LoginController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
@@ -25,6 +30,11 @@ public class LoginController {
 
     private final DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    /**
+     * appelée quand l'utilisateur clique sur le bouton connexion
+     * récupère les identifiants et vérifie avec la bdd
+     * redirige l'utilisateur vers l'interface client
+     */
     @FXML
     protected void onLoginButtonClick() {
         String email = emailField.getText();
@@ -49,6 +59,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * utilisée quand l'utilisateur coche (ou décoche) la case pour afficher le mdp
+     * affiche ou masque le mdp
+     */
     @FXML
     protected void togglePasswordVisibility() {
         boolean visible = passwordVisibleField.isVisible();
@@ -67,6 +81,11 @@ public class LoginController {
         }
     }
 
+    /**
+     * gère le clic sur le logo
+     * si l'utilisateur clique sur le logo, cela redirige vers l'interface de départ
+     * @param event
+     */
     @FXML
     private void onLogoClicked(MouseEvent event) { //recup code julien pour faire le retour à l'accueil en appuyant sur le logo
         try {
