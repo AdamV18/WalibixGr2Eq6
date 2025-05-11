@@ -23,6 +23,11 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.io.IOException;
 
+/**
+ * controleur de la selection de la date de réservation
+ * permet à l'utilisateur de choisir une date pour sa réservation
+ * redirection à la fin vers listeAttraction ou clinet-view si clic sur le logo Walibix
+ */
 public class ChoixDateController {
     @FXML
     private DatePicker choixDate;
@@ -31,9 +36,21 @@ public class ChoixDateController {
     @FXML
     private Label messageErreur;
 
+    /**
+     * objet de réservation temporaire permettant de stocker les infos de la résa en cours
+     */
     private Reservation reservation = new Reservation();
+
+    /**
+     *
+     */
     private DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
 
+    /**
+     * initialisation du controleur Javafx
+     * masque le message d'erreur au début
+     * configuration du datePicker pour que la date soit ultérieure à celle d'aujourd'hui
+     */
     @FXML
     private void initialize() {
         //choixDate.setValue(LocalDate.now());
@@ -49,6 +66,14 @@ public class ChoixDateController {
         });
     }
 
+    /**
+     * valide la date de la réservation
+     * si aucune date n'est sélectionnée -> message d'erreur
+     * stocke la date et l'identifiant de l'user dans la réservation
+     * chargement de la vue listeAttraction.fxml en lui passant la réservation
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void confirmerDate(ActionEvent event) throws IOException {
         LocalDate dateChoisie = choixDate.getValue();
@@ -85,6 +110,11 @@ public class ChoixDateController {
         }
     }
 
+    /**
+     * permet de retourner à l'accueil en cliquant sur le logo Walibix
+     * chargement de la vue client-view.fxml
+     * @param event
+     */
     @FXML
     private void onLogoClicked(MouseEvent event) { //recup code julien pour faire le retour à l'accueil en appuyant sur le logo
         try {
