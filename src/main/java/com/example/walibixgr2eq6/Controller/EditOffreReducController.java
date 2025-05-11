@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * controleur de vue edition des offres de reduc
+ * permet de lister, ajouter, modifier, supprimer et attrivuer des offres de reduc
+ */
 public class EditOffreReducController {
 
     @FXML private Button EditOffreRetourButton;
@@ -33,6 +37,11 @@ public class EditOffreReducController {
 
     private ObservableList<OffreReduction> offreList;
 
+    /**
+     * initialisation colonnes et chargement des données
+     * association de chaque colonne à la propriété correspondante
+     * chargement de la liste et écoute la selection pour afficher les détails
+     */
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("offreReducId"));
@@ -48,11 +57,18 @@ public class EditOffreReducController {
         );
     }
 
+    /**
+     * chargement de la liste des offres depuis la bdd et affichage dans la table
+     */
     private void loadOffres() {
         offreList = FXCollections.observableArrayList(OffreReductionDao.getAllOffres());
         offreTable.setItems(offreList);
     }
 
+    /**
+     * affiche les details de l'offre select
+     * @param offre
+     */
     private void showOffreDetails(OffreReduction offre) {
         if (offre != null) {
             nomField.setText(offre.getNom());
@@ -63,6 +79,10 @@ public class EditOffreReducController {
         }
     }
 
+    /**
+     * ajoute une nouvelle offre avec valeurs saisies
+     * si erreur sur le format des champs numeriques -> affichage alerte  du type WARNING
+     */
     @FXML
     private void handleAddOffreReduc() {
         try {
@@ -82,6 +102,10 @@ public class EditOffreReducController {
         }
     }
 
+    /**
+     * mise a jour de l'offre selectionnée avec valeurs saisies
+     * si erreur sur le format des champs numeriques -> affichage alerte du type WARNING
+     */
     @FXML
     private void handleUpdateOffreReduc() {
         OffreReduction selected = offreTable.getSelectionModel().getSelectedItem();
@@ -104,6 +128,11 @@ public class EditOffreReducController {
         }
     }
 
+    /**
+     * suppression de l'offre select
+     * détache offre des user et suppression dans bdd
+     * si aucune selection -> message d'alerte
+     */
     @FXML
     private void handleDeleteOffreReduc() {
         OffreReduction selected = offreTable.getSelectionModel().getSelectedItem();
@@ -117,13 +146,18 @@ public class EditOffreReducController {
         }
     }
 
+    /**
+     * attribution des offres automatiquement aux user en fonction de leur age
+     */
     @FXML
     private void handleAssignOffres() {
         OffreReductionDao.assignOffresToUsersByAge();
         showAlert("Succès", "Offres attribuées aux utilisateurs selon leur âge.");
     }
 
-
+    /**
+     * vide tous les champs de saisie
+     */
     private void clearFields() {
         nomField.clear();
         descriptionArea.clear();
@@ -132,6 +166,11 @@ public class EditOffreReducController {
         ageMaxField.clear();
     }
 
+    /**
+     * affichage de l'alerte de type WARNING aevc titre et message donné
+     * @param title
+     * @param message
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -139,6 +178,10 @@ public class EditOffreReducController {
         alert.showAndWait();
     }
 
+    /**
+     * retourne au menu admin (admin-view.fxml)
+     * @param event
+     */
     public void RetourMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) EditOffreRetourButton.getScene().getWindow();

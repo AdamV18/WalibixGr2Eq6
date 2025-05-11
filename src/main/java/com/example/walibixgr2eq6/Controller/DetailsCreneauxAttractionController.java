@@ -25,6 +25,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalTime;
 
+/**
+ * controleur pour affichae des détails de l'attraction choisie et sélection d'un créneau
+ * charge les infos de l'attraction (nom, description, image, prix avant et après réduc)
+ * calcul de la réduc si applicable
+ * choix du créneau pour la résa
+ */
 public class DetailsCreneauxAttractionController {
 
     @FXML
@@ -61,11 +67,19 @@ public class DetailsCreneauxAttractionController {
     private String attractionNom;
     private Reservation reservation;
 
+    /**
+     * constructeur par défaut
+     * initialise la connexion à la bdd et création du DAOAttraction
+     */
     public DetailsCreneauxAttractionController() { //connection à la bdd
         DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
         this.daoAttraction = new DAOAttraction(daoFactory);
     }
 
+    /**
+     * conserve date choisie, id client et attraction choisie pour la résa
+     * @param reservation
+     */
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
@@ -78,11 +92,22 @@ public class DetailsCreneauxAttractionController {
         }
     }
 
-    public void setAttractionNom(String nom) throws SQLException{ //pour recup le nom de l'attraction et ses infos, à voir pour utiliser la méthode d'ines
+    /**
+     * définit le nom de l'attraction choisie et charge ses détails
+     * @param nom
+     * @throws SQLException
+     */
+    public void setAttractionNom(String nom) throws SQLException{
         this.attractionNom = nom;
         detailsAttraction();
     }
 
+    /**
+     * recupère les infos de l'attraction choisie depuis la bdd
+     * calucl de la réduc si applicable grâce à daoAttraction.calculReduction
+     * choix du créneau
+     * @throws SQLException
+     */
     private void detailsAttraction() throws SQLException { //mettre les détails de l'attraction sur la page
         Attraction attraction = daoAttraction.getAttractionNom(attractionNom);
         messageErreur.setVisible(false);
@@ -128,11 +153,15 @@ public class DetailsCreneauxAttractionController {
 
         }
 
-
+    /**
+     * gestion du bouton retour
+     * retour à ListeAttraction.fxml
+     * reinitialise l'id de l'attraction choisie
+      */
     @FXML
     private void retour() { //gère le bouton retour
         try { //retour sur la page de choix de l'attraction
-            reservation.setAttractionId(0);
+            reservation.setAttractionId(0); // reinitialisation id attraction pour nouveau choix
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/walibixgr2eq6/ListeAttraction.fxml"));
             Parent root = loader.load();
 
@@ -148,6 +177,12 @@ public class DetailsCreneauxAttractionController {
         }
     }
 
+    /**
+     * validation du créneau select et passage à la confirmation
+     * si aucun créneau affichage d'un message d'erreur
+     * recupère le choix du créneau et l'ajoute à la résa en cours
+     * chargement de la vue ConfirmationReservation.fxml quand on clique sur valider
+     */
     @FXML
     private void valider() { //gère le bouton valider
         String choix = creneauxComboBox.getValue();
@@ -182,6 +217,11 @@ public class DetailsCreneauxAttractionController {
         }
     }
 
+    /**
+     * permet de retourner à l'accueil en cliquant sur le logo Walibix
+     * chargement de la vue client-view.fxml
+     * @param event
+     */
     @FXML
     private void onLogoClicked(MouseEvent event) { //recup code julien pour faire le retour à l'accueil en appuyant sur le logo
         try {

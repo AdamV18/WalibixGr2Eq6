@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * controleur de la vue edition des attractions (espace admin)
+ * permet de lister, select, modifier, ajouter et supp des attractions
+ */
 public class EditAttractionController {
 
     @FXML
@@ -35,6 +39,11 @@ public class EditAttractionController {
 
     private ObservableList<Attraction> attractionList;
 
+    /**
+     * initialisation colonnes et chargement des données
+     * association de chaque colonne à la propriété correspondante
+     * chargement de la liste et écoute la selection pour afficher les détails
+     */
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("attractionId"));
@@ -49,11 +58,18 @@ public class EditAttractionController {
         );
     }
 
+    /**
+     * chargement de la liste des attractions depuis la bdd et affichage dans la table
+     */
     private void loadAttractions() {
         attractionList = FXCollections.observableArrayList(AttractionDao.getAllAttractions());
         attractionTable.setItems(attractionList);
     }
 
+    /**
+     * affichage des détails de l'attraction select
+     * @param attraction
+     */
     private void showAttractionDetails(Attraction attraction) {
         if (attraction != null) {
             nomField.setText(attraction.getNom());
@@ -64,6 +80,10 @@ public class EditAttractionController {
         }
     }
 
+    /**
+     * mise a jour de l'attraction selectionnée avec valeurs saisies
+     * si aucune attraction select -> affichage d'une alerte du type WARNING
+     */
     @FXML
     private void handleUpdateAttraction() {
         Attraction selected = attractionTable.getSelectionModel().getSelectedItem();
@@ -85,6 +105,10 @@ public class EditAttractionController {
     }
 
 
+    /**
+     * ajoute une nouvelle attraction avec valeurs saisies
+     * si erreur sur le format du prix -> affichage message d'errreur
+     */
     @FXML
     private void handleAddAttraction() {
         try {
@@ -105,6 +129,12 @@ public class EditAttractionController {
         }
     }
 
+    /**
+     * suppression de l'attraction select
+     * réassignation de l'id dans les resa associées (résa archivées -> id =1)
+     * suppression attraction dans la bdd
+     * si aucune selection -> message d'alerte
+     */
     @FXML
     private void handleDeleteAttraction() {
         Attraction selected = attractionTable.getSelectionModel().getSelectedItem();
@@ -118,6 +148,9 @@ public class EditAttractionController {
         }
     }
 
+    /**
+     * vide tous les champs de saisie
+     */
     private void clearFields() {
         nomField.clear();
         typeField.clear();
@@ -126,6 +159,11 @@ public class EditAttractionController {
         descriptionArea.clear();
     }
 
+    /**
+     * affichage de l'alerte de type WARNING aevc titre et message donné
+     * @param title
+     * @param message
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -134,6 +172,10 @@ public class EditAttractionController {
     }
 
 
+    /**
+     * retourne au menu admin (admin-view.fxml)
+     * @param event
+     */
     public void RetourMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) EditAttracRetourButton.getScene().getWindow();

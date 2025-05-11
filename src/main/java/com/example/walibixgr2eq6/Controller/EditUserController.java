@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * conntroleur de vue edition user
+ * permet de lister, select, modifier et supprimer des user
+ */
 public class EditUserController {
 
     @FXML private Button EditUserRetourButton;
@@ -37,9 +41,6 @@ public class EditUserController {
 
     private ObservableList<User> userList;
 
-
-
-
     /*
     public EditUserController(UserDao userDao) {
         this.userDao = userDao;
@@ -49,6 +50,11 @@ public class EditUserController {
 
     private final UserDao userDao = new UserDao(daoFactory);
 
+    /**
+     * initialisation colonnes et chargement des données
+     * association de chaque colonne à la propriété correspondante
+     * chargement de la liste et écoute la selection pour afficher les détails
+     */
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("userId"));
@@ -66,11 +72,18 @@ public class EditUserController {
         );
     }
 
+    /**
+     * chargement de la liste des user depuis la bdd et affichage dans la table
+     */
     private void loadUsers() {
         userList = FXCollections.observableArrayList(userDao.getAllActiveUsers());
         userTable.setItems(userList);
     }
 
+    /**
+     * affiche les details de l'user select
+     * @param user
+     */
     private void showUserDetails(User user) {
         if (user != null) {
             emailField.setText(user.getEmail());
@@ -81,6 +94,10 @@ public class EditUserController {
         }
     }
 
+    /**
+     * mise a jour de l'user selectionné avec valeurs saisies
+     * si erreur -> affichage alerte du type WARNING
+     */
     @FXML
     private void handleUpdateUser() {
         User selected = userTable.getSelectionModel().getSelectedItem();
@@ -104,6 +121,12 @@ public class EditUserController {
         }
     }
 
+    /**
+     * suppression de l'user select
+     * réassignation des resa dans user archive -> id =1
+     * suppression dans bdd
+     * si erreur -> affichage alerte du type WARNING
+     */
     @FXML
     private void handleDeleteUser() {
         User selected = userTable.getSelectionModel().getSelectedItem();
@@ -118,6 +141,10 @@ public class EditUserController {
         }
     }
 
+    /**
+     * retourne au menu admin (admin-view.fxml)
+     * @param event
+     */
     public void RetourMenu(ActionEvent event) {
         try {
             Stage stage = (Stage) EditUserRetourButton.getScene().getWindow();
@@ -128,6 +155,11 @@ public class EditUserController {
         }
     }
 
+    /**
+     * affichage de l'alerte de type WARNING aevc titre et message donné
+     * @param title
+     * @param message
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

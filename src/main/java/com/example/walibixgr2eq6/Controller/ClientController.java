@@ -8,14 +8,28 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * controleur de la vue client
+ * gestion des actions de navigations vers réservation d'une nouvelle résa (choixDate),
+ * affichage historique et déconnexion
+ */
 public class ClientController {
 
     private Stage stage;
 
+    /**
+     * définition
+     * @param stage
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * action délenchée quand il y a un clic sur le bouton "Nouvelle réservation"
+     * redirection vers ChoixDate.fxml
+     * @param event
+     */
     @FXML
     private void onNouvelleReservationClick(ActionEvent event) {
         try {
@@ -28,6 +42,11 @@ public class ClientController {
         }
     }
 
+    /**
+     * action délenchée quand il y a un clic sur le bouton "Historique des réservations"
+     * redirection vers historique-view.fxml
+     * @param event
+     */
     @FXML
     private void onHistoriqueClick(ActionEvent event) {
         if (!Session.isLoggedIn()) {
@@ -44,6 +63,11 @@ public class ClientController {
         }
     }
 
+    /**
+     * action délenchée quand il y a un clic sur le bouton "Se déconnecter"
+     * redirection vers satrt-view.fxml
+     * @param event
+     */
     @FXML
     private void onLogoutClick(ActionEvent event) {
         Session.clear();

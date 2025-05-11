@@ -17,6 +17,11 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * controleur de la vue de confirmationReservation
+ * affiche une barre de progression pendant enregistrement en bdd
+ * redirection vers vue finale une fois la progress bar finie
+ */
 public class ConfirmationReservationController {
 
     @FXML
@@ -25,19 +30,34 @@ public class ConfirmationReservationController {
     @FXML
     private Label texteReservationEnCours;
 
+    /**
+     * methode d'nitialisation
+     * lance l'animation de la barre de progression
+     */
     @FXML
     public void initialize() {
         startProgressAnimation();
     }
 
     private DAOAttraction daoAttraction;
+
     private Reservation reservation;
 
+    /**
+     * constructeur par défaut
+     * initialise la connexion à la bdd et création du DAOAttraction
+     */
     public ConfirmationReservationController() { //connection à la bdd
         DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
         this.daoAttraction = new DAOAttraction(daoFactory);
     }
 
+    /**
+     * définition de la reservation à confirmer
+     * enregistrement en bdd de la résa grâce à daoAttraction.ajouter
+     * affichage dans console pour vérif pendant code
+     * @param reservation
+     */
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
@@ -56,6 +76,11 @@ public class ConfirmationReservationController {
         daoAttraction.ajouter(reservation);
     }
 
+    /**
+     * lancement animation de la progress bar
+     * animation pendant pendant 2 secondes
+     * quand l'animation est finie chargement de FinReservation.fxml
+     */
     private void startProgressAnimation() { //animation de la barre qui avance
         Timeline timeline = new Timeline();
         final double duration = 2.0; //durée de la progression, à voir si on modifie ou pas
