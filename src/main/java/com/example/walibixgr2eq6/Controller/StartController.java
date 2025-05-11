@@ -9,6 +9,10 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
+/**
+ * controleur de l'interface de départ
+ * permet à l'utilisateur de choisir entre : se connecter, s'inscrire ou continuer en tant qu'invité
+ */
 public class StartController {
 
     @FXML
@@ -29,6 +33,10 @@ public class StartController {
         switchScene("invite-view.fxml");
     }
 
+    /**
+     * permet de changer de scène en fonction du fxml donné
+     * @param fxmlFile
+     */
     private void switchScene(String fxmlFile) {
         try {
             Stage stage = (Stage) loginButton.getScene().getWindow();

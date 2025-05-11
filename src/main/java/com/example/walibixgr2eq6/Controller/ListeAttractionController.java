@@ -20,6 +20,11 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * controleur de l'interface ListeAttraction
+ * permet à l'utilisateur de choisir l'attraction qu'il souhaite (dans toutes celles proposées dans la bdd)
+ * puis passe à l'écran pour avoir les détails de l'attraction et pouvoir choisir le créneau qu'il souhaite
+ */
 public class ListeAttractionController {
 
     @FXML
@@ -33,6 +38,10 @@ public class ListeAttractionController {
 
     private DAOAttraction daoAttraction;
 
+    /**
+     * constructeur par défaut
+     * initialise la connexion à la bdd et création du DAOAttraction
+    */
     public ListeAttractionController() {
         DaoFactory daoFactory = DaoFactory.getInstance("walibix", "root", "");
         this.daoAttraction = new DAOAttraction(daoFactory);
@@ -40,6 +49,10 @@ public class ListeAttractionController {
 
     private Reservation reservation;
 
+    /**
+     * récupère les infos de la réservation en cours données par l'utilisateur
+     * @param reservation
+     */
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
         if (reservation != null) {
@@ -50,9 +63,12 @@ public class ListeAttractionController {
         }
     }
 
+    /**
+     * charge les attractions de la bdd pour les afficher dans la combobox
+     * ignore les attractions supprimées
+     */
     @FXML
     public void initialize() {
-        // Récupère toutes les attractions depuis la base de données
         var attractions = daoAttraction.getAllAttractions();
         messageErreur.setVisible(false);
 
@@ -65,6 +81,13 @@ public class ListeAttractionController {
         }
     }
 
+    /**
+     * gère le bouton valider
+     * récupère l'attraction selectionnée par l'utilisateur et met à jour la réservation
+     * puis, affiche l'interface de DetailsCreneauxAttractions
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void valider(ActionEvent event) throws SQLException { //si on clique sur le bouton valider :
         String choix = comboBox.getValue();
@@ -101,6 +124,12 @@ public class ListeAttractionController {
             }
         }
     }
+
+    /**
+     * gère le clic sur le logo
+     * si l'utilisateur clique sur le logo, cela redirige vers l'interface de départ
+     * @param event
+     */
     @FXML
     private void onLogoClicked(MouseEvent event) { //recup code julien pour faire le retour à l'accueil en appuyant sur le logo
         try {
